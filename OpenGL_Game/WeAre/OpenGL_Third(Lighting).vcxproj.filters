@@ -45,6 +45,9 @@
     <ClCompile Include="Image.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -66,6 +69,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
