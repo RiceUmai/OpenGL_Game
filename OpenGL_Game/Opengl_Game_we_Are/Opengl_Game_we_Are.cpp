@@ -8,6 +8,8 @@
 #include <iostream>
 #include <math.h>
 
+#include "Setting.h"
+
 #include "Camera.h"
 #include "Shader.h"
 #include "GameTIme.h"
@@ -15,6 +17,7 @@
 #include "Text.h"
 #include "Image.h"
 #include "Cube.h"
+#include "Line.h"
 
 using namespace std;
 
@@ -30,13 +33,13 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 
 
-// settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+//// settings
+//const unsigned int SCR_WIDTH = 800;
+//const unsigned int SCR_HEIGHT = 600;
 
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-float lastX = SCR_WIDTH / 2.0f;
-float lastY = SCR_HEIGHT / 2.0f;
+float lastX = Setting::SCR_WIDTH / 2.0f;
+float lastY = Setting::SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 
 float mixValue = 0.2f;
@@ -57,7 +60,7 @@ int main()
 
     // glfw window creat
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(Setting::SCR_WIDTH, Setting::SCR_HEIGHT, "We Are Tech", NULL, NULL);
     glfwSetWindowPos(window, 800, 100);
     if (window == NULL)
     {
@@ -89,17 +92,16 @@ int main()
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
     Assimp::Importer importer;
-
     Shader lightingShader("Shader/Multiple_light.vs", "Shader/Multiple_light.fs");
     Shader lightCubeShader("Shader/light_cube.vs", "Shader/light_cube.fs");
     Shader ourShader("Shader/model_loading.vs", "Shader/model_loading.fs");
+    Shader LineShader("Shader/Line.vs", "Shader/Line.fs");
 
     Model ourModel("newell_teaset/teapot.obj");
 
     Shader shader("Shader/font.vs", "Shader/font.fs");
-    glm::mat4 projection = glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT);
+    glm::mat4 projection = glm::ortho(0.0f, (float)Setting::SCR_WIDTH, 0.0f, (float)Setting::SCR_HEIGHT);
     shader.use();
     glUniformMatrix4fv(glGetUniformLocation(shader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
     Text text("font/arial.ttf");
@@ -111,20 +113,22 @@ int main()
     //==================================
     float ver[] = {
         // positions       
-        -0.5f, -0.5f, -0.5f,
+         -0.5f,  0.5f,  0.5f,
          0.5f,  0.5f,  0.5f
     };
-    unsigned int cubeVAO, VBO;
-    glGenVertexArrays(1, &cubeVAO);
+    unsigned int VAO, VBO;
+    glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(ver), ver, GL_STATIC_DRAW);
 
-    glBindVertexArray(cubeVAO);
+    glBindVertexArray(VAO);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+
+    Line* line = new Line();
 
     // render loop
     // -----------
@@ -141,17 +145,19 @@ int main()
         //========================================
         glm::mat4 model = glm::mat4(1.0f);
         glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)Setting::SCR_WIDTH / (float)Setting::SCR_HEIGHT, 0.1f, 100.0f);
         //========================================
-
         // cubes
         cubes->SetPosition(glm::vec3(1,2,1));
         cubes->Draw(cube, projection, view);
-        //==============================
-  
+        
+        // Line
+        line->SetWidth(100);
+        line->SetScals(glm::vec3(100,5,5));
+        line->SetColor(glm::vec3(0.5, 0.5, 0.5));
+        line->Draw(LineShader, projection, view);
         //==============
         //TeaPort Renderer
-
 
         ourShader.use();
         ourShader.setMat4("projection", projection);
@@ -165,12 +171,12 @@ int main()
         ourShader.setFloat("Color", glfwGetTime());
         ourModel.Draw(ourShader);
         //================
-
-
         //Text Draw
         //================
         text.Draw(shader, "textSample", 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
         text.Draw(shader, camera.Position.x, 400.0f, 300.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+        text.Draw(shader, camera.Position.y, 400.0f, 250.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+        text.Draw(shader, camera.Position.z, 400.0f, 200.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
         //================
 
         gametime.DeltaTime_Update();

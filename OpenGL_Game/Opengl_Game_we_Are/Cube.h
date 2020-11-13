@@ -21,7 +21,6 @@ private:
 	float angle;
 	unsigned char texture;
 	unsigned int VBO, cubeVAO;
-	Camera camera;
 public:
 	Cube();
 	Cube(glm::vec3 pos);
