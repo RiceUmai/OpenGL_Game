@@ -16,6 +16,9 @@
     <Filter Include="C_File">
       <UniqueIdentifier>{ff203be5-179c-4e23-8206-e76820f03829}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{d86bede9-c5a7-4237-b2f2-43a17636cdc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Opengl_Game_we_Are.cpp">
@@ -90,7 +93,7 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Setting.h">
-      <Filter>소스 파일</Filter>
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

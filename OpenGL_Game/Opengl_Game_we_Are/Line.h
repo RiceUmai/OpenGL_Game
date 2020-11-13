@@ -30,7 +30,9 @@ public:
 	void SetPosition(glm::vec3 pos) { Position = pos; };
 	void SetScals(glm::vec3 scale) { Scals = scale; };
 
-
 	void Draw(Shader shader, glm::mat4 projection, glm::mat4 view);
+
+private:
+	void Init();
 };
 

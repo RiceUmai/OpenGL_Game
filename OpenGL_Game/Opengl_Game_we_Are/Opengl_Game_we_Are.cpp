@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <math.h>
+#include <vector>
 
 #include "Setting.h"
 
@@ -170,6 +171,7 @@ int main()
         ourShader.setMat4("model", model);
         ourShader.setFloat("Color", glfwGetTime());
         ourModel.Draw(ourShader);
+
         //================
         //Text Draw
         //================
