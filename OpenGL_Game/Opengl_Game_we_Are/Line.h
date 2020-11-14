@@ -24,6 +24,7 @@ private:
 public:
 	Line();
 	Line(glm::vec3 position);
+	~Line();
 	
 	void SetWidth(float width) { Width = width; };
 	void SetColor(glm::vec3 Color) { color = Color; };

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -9,8 +8,7 @@
 
 #include "Shader.h"
 #include "Image.h"
-
-class Cube
+class Plane
 {
 private:
 	glm::vec3 Position;
@@ -18,19 +16,20 @@ private:
 	glm::vec3 Scale;
 	float angle;
 	unsigned char texture;
-	unsigned int VBO, cubeVAO;
+	unsigned int VBO, VAO;
 public:
-	Cube();
-	Cube(glm::vec3 pos);
-	Cube(float x, float y, float z);
-	~Cube();
+	Plane();
+	Plane(glm::vec3 pos);
+	Plane(float x, float y, float z);
+	~Plane();
+
 	void Draw(Shader shader, glm::mat4 projection, glm::mat4 view);
 
 	void SetPosition(glm::vec3 pos) { Position = pos; };
 	void SetRotation(glm::vec3 rot, float Angle) { Rotation = rot; angle = Angle; };;
 	void SetScale(glm::vec3 scale) { Scale = scale; };
 
-	void SetImage(char const * path);
+	void SetImage(char const* path);
 
 	glm::vec3 GetPosition() { return Position; };
 	glm::vec3 GetRotation() { return Rotation; };

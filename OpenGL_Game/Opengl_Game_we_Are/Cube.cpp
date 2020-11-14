@@ -53,6 +53,8 @@ void Cube::Draw(Shader shader,glm::mat4 projection, glm::mat4 view)
 
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
+
+
 }
 
 void Cube::SetImage(char const* path)

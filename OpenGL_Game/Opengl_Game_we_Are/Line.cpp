@@ -22,6 +22,13 @@ Line::Line(glm::vec3 position)
     Init();
 }
 
+Line::~Line()
+{
+    glDeleteVertexArrays(1, &LineVAO);
+    glDeleteBuffers(1, &VBO);
+    std::cout << "Line Object Delet" << std::endl;
+}
+
 void Line::Draw(Shader shader, glm::mat4 projection, glm::mat4 view)
 {
     glBindVertexArray(LineVAO);

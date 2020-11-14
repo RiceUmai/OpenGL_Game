@@ -1,24 +1,7 @@
-﻿#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#include <iostream>
-#include <math.h>
-#include <vector>
-
+﻿#pragma once
+#include "Game.h"
+#include "Title.h"
 #include "Setting.h"
-
-#include "Camera.h"
-#include "Shader.h"
-#include "GameTIme.h"
-#include "Model.h"
-#include "Text.h"
-#include "Image.h"
-#include "Cube.h"
-#include "Line.h"
 
 using namespace std;
 
@@ -33,14 +16,13 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 
-
 //// settings
 //const unsigned int SCR_WIDTH = 800;
 //const unsigned int SCR_HEIGHT = 600;
 
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-float lastX = Setting::SCR_WIDTH / 2.0f;
-float lastY = Setting::SCR_HEIGHT / 2.0f;
+float _lastX = 800;
+float _lastY = 600;
 bool firstMouse = true;
 
 float mixValue = 0.2f;
@@ -48,7 +30,7 @@ float zoom = -3.0f;
 
 GameTime gametime;
 
-glm::vec3 lightPos(1.2f, 0.5f, 2.0f);
+std::string is_SceneName = "Title";
 
 int main()
 {
@@ -112,30 +94,21 @@ int main()
     Cube* cubes = new Cube;
     cubes->SetImage("texture/container2.png");
     //==================================
-    float ver[] = {
-        // positions       
-         -0.5f,  0.5f,  0.5f,
-         0.5f,  0.5f,  0.5f
-    };
-    unsigned int VAO, VBO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(ver), ver, GL_STATIC_DRAW);
-
-    glBindVertexArray(VAO);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
     Line* line = new Line();
+
+
+    //Scene Add
+    //=================================
+    Game* game = new Game();
+    Title* title = new Title();
+    //=================================
+
 
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
     {
-        //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        ////glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
         gametime.Time_Measure();
         // render
@@ -143,44 +116,53 @@ int main()
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        //========================================
+        ////========================================
         glm::mat4 model = glm::mat4(1.0f);
         glm::mat4 view = camera.GetViewMatrix();
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)Setting::SCR_WIDTH / (float)Setting::SCR_HEIGHT, 0.1f, 100.0f);
-        //========================================
+        ////========================================
         // cubes
-        cubes->SetPosition(glm::vec3(1,2,1));
-        cubes->Draw(cube, projection, view);
-        
+        //cubes->SetPosition(glm::vec3(1,2,1));
+        //cubes->Draw(cube, projection, view);
+        //
         // Line
-        line->SetWidth(100);
-        line->SetScals(glm::vec3(100,5,5));
-        line->SetColor(glm::vec3(0.5, 0.5, 0.5));
-        line->Draw(LineShader, projection, view);
+        //line->SetWidth(100);
+        //line->SetScals(glm::vec3(100,5,5));
+        //line->SetColor(glm::vec3(0.5, 0.5, 0.5));
+        //line->Draw(LineShader, projection, view);
         //==============
         //TeaPort Renderer
 
-        ourShader.use();
-        ourShader.setMat4("projection", projection);
-        ourShader.setMat4("view", view);
+        //ourShader.use();
+        //ourShader.setMat4("projection", projection);
+        //ourShader.setMat4("view", view);
 
-        model = glm::translate(model, glm::vec3(0.0f, -0.5f, 0.0f));
-        model = glm::rotate(model, (float)glfwGetTime() * glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+        //model = glm::translate(model, glm::vec3(0.0f, -0.5f, 0.0f));
+        //model = glm::rotate(model, (float)glfwGetTime() * glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        //model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 
-        ourShader.setMat4("model", model);
-        ourShader.setFloat("Color", glfwGetTime());
-        ourModel.Draw(ourShader);
-
+        //ourShader.setMat4("model", model);
+        //ourShader.setFloat("Color", glfwGetTime());
+        //ourModel.Draw(ourShader);
         //================
         //Text Draw
         //================
-        text.Draw(shader, "textSample", 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
         text.Draw(shader, camera.Position.x, 400.0f, 300.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
         text.Draw(shader, camera.Position.y, 400.0f, 250.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
         text.Draw(shader, camera.Position.z, 400.0f, 200.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
         //================
+        if (is_SceneName == "Game")
+        {
+            game->Draw(projection, view);
+            text.Draw(shader, game->GetSceneName(), 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
+        }
 
+        else if (is_SceneName == "Title")
+        {
+            title->Draw(projection, view);
+            text.Draw(shader, title->GetSceneName(), 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
+        }
+            
         gametime.DeltaTime_Update();
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -245,16 +227,16 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
     if (firstMouse)
     {
-        lastX = xpos;
-        lastY = ypos;
+        _lastX = xpos;
+        _lastY = ypos;
         firstMouse = false;
     }
 
-    float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos;
+    float xoffset = xpos - _lastX;
+    float yoffset = _lastY - ypos;
 
-    lastX = xpos;
-    lastY = ypos;
+    _lastX = xpos;
+    _lastY = ypos;
 
     camera.ProcessMouseMovement(xoffset, yoffset);
 }
@@ -266,14 +248,16 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
-    //if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-    //{
-    //	cout << "Mouse Clicked right button" << endl;
-    //}
+    if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+    {
+    	cout << "Mouse Clicked right button" << endl;
+        is_SceneName = "Game";
+    }
 
-    //if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-    //{
-    //	cout << "Mouse Clicked right left" << endl;
-    //}
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+    {
+    	cout << "Mouse Clicked right left" << endl;
+        is_SceneName = "Title";
+    }
 }
 //==========================================================

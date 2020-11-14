@@ -90,6 +90,7 @@ void Text::Draw(Shader &shader, std::string text, float x, float y, float scale,
 {
 	shader.use();
 	shader.setVec3("textColor" ,color.x, color.y, color.z);
+
  	glActiveTexture(GL_TEXTURE0);
 	glBindVertexArray(VAO);
 
