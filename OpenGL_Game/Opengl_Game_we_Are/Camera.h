@@ -30,6 +30,7 @@ public:
 	glm::vec3 Right;
 	glm::vec3 WorldUp;
 
+	glm::vec3 tempPos;
 	float yaw;
 	float Pitch;
 	
@@ -46,6 +47,8 @@ public:
 	void ProcessKeyboard(Camera_Movement direction, float deltaTime);
 	void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
 	void ProcessMouseScroll(float yoffset);
+
+	void reset();
 
 private:
 	void updateCameraVectors();

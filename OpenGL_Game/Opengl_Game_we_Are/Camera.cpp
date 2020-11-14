@@ -8,6 +8,8 @@ Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) :
     WorldUp = up;
     Yaw = yaw;
     Pitch = pitch;
+
+    tempPos = Position;
     updateCameraVectors();
 
 }
@@ -18,6 +20,8 @@ Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float y
     Position = glm::vec3(posX, posY, posY);
     WorldUp = glm::vec3(upX, upY, yaw);
     Pitch = pitch;
+
+    tempPos = Position;
     updateCameraVectors();
 }
 
@@ -58,6 +62,11 @@ void Camera::ProcessMouseScroll(float yoffset)
     std::cout << Zoom << std::endl;
     if (Zoom < 1.0f) Zoom = 1.0f;
     if (Zoom > 45.0f) Zoom = 45.0f;
+}
+
+void Camera::reset()
+{
+    Position = tempPos;
 }
 
 void Camera::updateCameraVectors()

@@ -25,7 +25,7 @@ class Game
 {
 private:
 	std::string SceneName = "Game";
-	Cube* cube = new Cube();
+	Cube* cube;
 	
 	Shader shader;
 
@@ -36,5 +36,7 @@ public:
 	void Draw(glm::mat4 view, glm::mat4 projection);
 
 	std::string GetSceneName() { return SceneName; };
+
+	void Reset();
 };
 

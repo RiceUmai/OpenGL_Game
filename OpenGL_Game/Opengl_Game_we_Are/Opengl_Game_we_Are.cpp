@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 #pragma comment(lib, "glfw3.lib")
 #pragma comment(lib, "assimp-vc142-mt.lib")   
 #pragma comment(lib, "freetype.lib")
@@ -30,7 +31,7 @@ float zoom = -3.0f;
 
 GameTime gametime;
 
-std::string is_SceneName = "Title";
+std::string is_SceneName = "Game";
 
 int main()
 {
@@ -98,11 +99,10 @@ int main()
 
 
     //Scene Add
-    //=================================
+     //=================================
     Game* game = new Game();
     Title* title = new Title();
-    //=================================
-
+     //=================================
 
     // render loop
     // -----------
@@ -162,14 +162,11 @@ int main()
             title->Draw(projection, view);
             text.Draw(shader, title->GetSceneName(), 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
         }
-            
+
         gametime.DeltaTime_Update();
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-
-    //glDeleteVertexArrays(1, &cubeVAO);
-    //glDeleteBuffers(1, &VBO);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
@@ -252,12 +249,14 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
     {
     	cout << "Mouse Clicked right button" << endl;
         is_SceneName = "Game";
+        camera.reset();
     }
 
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
     {
     	cout << "Mouse Clicked right left" << endl;
         is_SceneName = "Title";
+        camera.reset();
     }
 }
 //==========================================================

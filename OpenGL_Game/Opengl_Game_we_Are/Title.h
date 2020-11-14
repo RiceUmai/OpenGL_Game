@@ -31,5 +31,7 @@ public:
 	void Draw(glm::mat4 projection, glm::mat4 view);
 
 	std::string GetSceneName() { return SceneName; };
+
+	void Reset();
 };
 

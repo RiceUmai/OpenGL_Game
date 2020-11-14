@@ -15,3 +15,7 @@ void Title::Update()
 void Title::Draw(glm::mat4 projection, glm::mat4 view)
 {
 }
+
+void Title::Reset()
+{
+}

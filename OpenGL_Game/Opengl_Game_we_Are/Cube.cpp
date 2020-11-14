@@ -31,6 +31,9 @@ Cube::Cube(float x, float y, float z)
 
 Cube::~Cube()
 {
+    glDeleteVertexArrays(1, &cubeVAO);
+    glDeleteBuffers(1, &VBO);
+    std::cout << "cybe delete" << std::endl;
 }
 
 void Cube::Draw(Shader shader,glm::mat4 projection, glm::mat4 view)
@@ -53,8 +56,6 @@ void Cube::Draw(Shader shader,glm::mat4 projection, glm::mat4 view)
 
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
-
-
 }
 
 void Cube::SetImage(char const* path)
@@ -127,5 +128,4 @@ void Cube::Init()
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
-
 }
