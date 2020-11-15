@@ -19,6 +19,9 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{d86bede9-c5a7-4237-b2f2-43a17636cdc3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{1c285c89-479e-48f9-b316-7d0d68138547}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Opengl_Game_we_Are.cpp">
@@ -69,6 +72,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Object\Player.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">
@@ -112,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Player.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

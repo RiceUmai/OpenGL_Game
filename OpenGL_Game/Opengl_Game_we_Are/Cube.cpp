@@ -33,7 +33,6 @@ Cube::~Cube()
 {
     glDeleteVertexArrays(1, &cubeVAO);
     glDeleteBuffers(1, &VBO);
-    std::cout << "cybe delete" << std::endl;
 }
 
 void Cube::Draw(Shader shader,glm::mat4 projection, glm::mat4 view)

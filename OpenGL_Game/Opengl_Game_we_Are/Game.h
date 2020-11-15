@@ -25,10 +25,9 @@ class Game
 {
 private:
 	std::string SceneName = "Game";
-	Cube* cube;
-	
+	std::vector<Cube*> Wall;
+	int Wall_Index = 4;
 	Shader shader;
-
 public:
 	Game();
 	~Game();
@@ -38,5 +37,8 @@ public:
 	std::string GetSceneName() { return SceneName; };
 
 	void Reset();
+
+private:
+	void MemoryFree();
 };
 

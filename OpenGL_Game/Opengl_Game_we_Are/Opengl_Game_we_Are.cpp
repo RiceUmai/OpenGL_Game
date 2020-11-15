@@ -153,12 +153,14 @@ int main()
         //================
         if (is_SceneName == "Game")
         {
+            game->Update();
             game->Draw(projection, view);
             text.Draw(shader, game->GetSceneName(), 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
         }
 
         else if (is_SceneName == "Title")
         {
+            title->Update();
             title->Draw(projection, view);
             text.Draw(shader, title->GetSceneName(), 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
         }
