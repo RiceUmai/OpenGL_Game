@@ -5,8 +5,10 @@
 
 using namespace std;
 
-
 #pragma comment(lib, "glfw3.lib")
+#pragma comment (lib, "opengl32.lib")
+#pragma comment(lib, "glu32.lib")
+
 #pragma comment(lib, "assimp-vc142-mt.lib")   
 #pragma comment(lib, "freetype.lib")
 
@@ -32,7 +34,6 @@ float zoom = -3.0f;
 GameTime gametime;
 
 std::string is_SceneName = "Game";
-
 int main()
 {
     // glfw initialize
@@ -92,11 +93,7 @@ int main()
 
     Shader cube("Shader/Cube.vs", "Shader/Cube.fs");
     //==================================
-    Cube* cubes = new Cube;
-    cubes->SetImage("texture/container2.png");
-    //==================================
     Line* line = new Line();
-
 
     //Scene Add
      //=================================
@@ -147,9 +144,9 @@ int main()
         //================
         //Text Draw
         //================
-        text.Draw(shader, camera.Position.x, 400.0f, 300.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
-        text.Draw(shader, camera.Position.y, 400.0f, 250.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
-        text.Draw(shader, camera.Position.z, 400.0f, 200.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+        text.Draw(shader, camera.Position.x, 600.0f, 500.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+        text.Draw(shader, camera.Position.y, 600.0f, 450.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+        text.Draw(shader, camera.Position.z, 600.0f, 400.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
         //================
         if (is_SceneName == "Game")
         {
@@ -242,7 +239,7 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-    camera.ProcessMouseScroll(yoffset);
+    //camera.ProcessMouseScroll(yoffset);
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)

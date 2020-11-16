@@ -18,7 +18,6 @@
 #include "Image.h"
 #include "Cube.h"
 #include "Line.h"
-#include "Plane.h"
 
 class Title
 {

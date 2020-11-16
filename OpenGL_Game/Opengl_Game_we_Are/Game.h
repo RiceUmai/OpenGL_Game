@@ -19,13 +19,14 @@
 #include "Image.h"
 #include "Cube.h"
 #include "Line.h"
-#include "Plane.h"
+#include "Player.h"
 
 class Game
 {
 private:
 	std::string SceneName = "Game";
 	std::vector<Cube*> Wall;
+	Player* player;
 	int Wall_Index = 4;
 	Shader shader;
 public:
