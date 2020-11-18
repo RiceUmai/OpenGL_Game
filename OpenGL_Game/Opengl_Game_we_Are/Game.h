@@ -38,8 +38,10 @@ public:
 	std::string GetSceneName() { return SceneName; };
 
 	void Reset();
+	
 
 private:
 	void MemoryFree();
+	bool CollisionAABB(Cube* point, Cube* box);
 };
 

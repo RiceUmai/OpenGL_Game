@@ -21,7 +21,7 @@ protected:
 	glm::vec3 minPos;
 
 	float angle;
-	unsigned char texture;
+	unsigned int texture;
 	unsigned int VBO, cubeVAO;
 	//float maxX, maxY, maxZ;
 	//float minX, minY, minZ;
@@ -53,8 +53,11 @@ public:
 
 	glm::vec3 GetColor() { return Color; };
 
+	bool CollisionAABB(Cube point, Cube box);
+	
 protected:
 	void Init();
 	void Collision_Update();
 };
+
 

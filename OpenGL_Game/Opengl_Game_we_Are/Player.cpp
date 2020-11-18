@@ -1,5 +1,5 @@
 #include "Player.h"
 
-Player::Player() : Cube()
+Player::Player()
 {
 }
