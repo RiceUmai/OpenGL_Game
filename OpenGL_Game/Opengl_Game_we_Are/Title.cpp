@@ -8,7 +8,7 @@ Title::~Title()
 {
 }
 
-void Title::Update()
+void Title::Update(float DeltaTime)
 {
 }
 

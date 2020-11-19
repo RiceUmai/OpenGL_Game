@@ -10,7 +10,6 @@ Game::Game() : shader("Shader/Cube.vs", "Shader/Cube.fs")
 		Wall.back()->SetImage("texture/container2.png");
 	}
 	player = new Player();
-
 	Wall[0]->SetPosition(glm::vec3(10, 0, 0));
 	Wall[0]->SetScale(glm::vec3(50, 0.5, 50));
 
@@ -19,7 +18,7 @@ Game::Game() : shader("Shader/Cube.vs", "Shader/Cube.fs")
 	//Wall[3]->SetPosition(glm::vec3(0, 30,10));
 	//Wall[3]->SetScale(glm::vec3(50, 0.5, 50));
 	//Wall[3]->SetScale(glm::vec3(50, 0.5, 50));
-
+	player->SetPosition(glm::vec3(0, 10, 0));
 }
 
 Game::~Game()
@@ -29,14 +28,18 @@ Game::~Game()
 	MemoryFree();
 }
 
-void Game::Update()
+void Game::Update(float DeltaTime)
 {
-	glm::vec3 temp =  Wall[1]->GetPosition() -= glm::vec3(0.0, 0.1, 0.0);
-	Wall[1]->SetPosition(temp);
-	player->SetPosition(glm::vec3(10,10,10));
-
-	CollisionAABB(Wall[0], Wall[1]);
-	std::cout << CollisionAABB(Wall[0], Wall[1]) << std::endl;
+	glm::vec3 temp = player->GetPosition() -= glm::vec3(0.0, 1.0, 0.0) * DeltaTime;
+	for (int i = 0; i < (Wall.size()); i++)
+	{
+		CollisionAABB(player, Wall[i]);
+		if (CollisionAABB(cameraPos, Wall[i]))
+		{
+			std::cout << "onCollision" << std::endl;
+		}
+	}
+	player->SetPosition(glm::vec3(temp));
 
 }
 
@@ -57,7 +60,7 @@ void Game::Reset()
 
 void Game::MemoryFree()
 {
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < Wall.size(); i++)
 	{
 		delete Wall[i];
 	}
@@ -65,11 +68,18 @@ void Game::MemoryFree()
 
 //collision chacke
 //====================
-bool Game::CollisionAABB(Cube *point, Cube *box)
+bool Game::CollisionAABB(Cube *Target, Cube *box)
 {
-	return (point->GetMinPos().x <= box->GetMaxPos().x && point->GetMaxPos().x >= box->GetMinPos().x) &&
-		(point->GetMinPos().y <= box->GetMaxPos().y && point->GetMaxPos().y >= box->GetMinPos().y) &&
-		(point->GetMinPos().z <= box->GetMaxPos().z && point->GetMaxPos().z >= box->GetMinPos().z);
+	return (Target->GetMinPos().x <= box->GetMaxPos().x && Target->GetMaxPos().x >= box->GetMinPos().x) &&
+		(Target->GetMinPos().y <= box->GetMaxPos().y && Target->GetMaxPos().y >= box->GetMinPos().y) &&
+		(Target->GetMinPos().z <= box->GetMaxPos().z && Target->GetMaxPos().z >= box->GetMinPos().z);
+}
+
+bool Game::CollisionAABB(glm::vec3 Target, Cube* box)
+{
+	return  (Target.x <= box->GetMaxPos().x && Target.x >= box->GetMinPos().x) &&
+		(Target.y <= box->GetMaxPos().y && Target.y >= box->GetMinPos().y) &&
+		(Target.z <= box->GetMaxPos().z && Target.z >= box->GetMinPos().z);
 }
 
 

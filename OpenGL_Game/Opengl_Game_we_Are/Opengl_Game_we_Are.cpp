@@ -12,6 +12,9 @@ using namespace std;
 #pragma comment(lib, "assimp-vc142-mt.lib")   
 #pragma comment(lib, "freetype.lib")
 
+Game* game;
+Title* title;
+
 //callback
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scencode, int action, int mods);
@@ -28,7 +31,6 @@ float _lastX = 800;
 float _lastY = 600;
 bool firstMouse = true;
 
-float mixValue = 0.2f;
 float zoom = -3.0f;
 
 GameTime gametime;
@@ -46,6 +48,7 @@ int main()
     // glfw window creat
     // --------------------
     GLFWwindow* window = glfwCreateWindow(Setting::SCR_WIDTH, Setting::SCR_HEIGHT, "We Are Tech", NULL, NULL);
+    glfwSwapInterval(1); //FPS 60 set
     glfwSetWindowPos(window, 800, 100);
     if (window == NULL)
     {
@@ -78,17 +81,18 @@ int main()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Assimp::Importer importer;
-    Shader lightingShader("Shader/Multiple_light.vs", "Shader/Multiple_light.fs");
-    Shader lightCubeShader("Shader/light_cube.vs", "Shader/light_cube.fs");
+    //==============================
+    //==============================
     Shader ourShader("Shader/model_loading.vs", "Shader/model_loading.fs");
-    Shader LineShader("Shader/Line.vs", "Shader/Line.fs");
+    //Shader LineShader("Shader/Line.vs", "Shader/Line.fs");
 
-    Model ourModel("newell_teaset/teapot.obj");
+    //Model ourModel("newell_teaset/teapot.obj");
 
     Shader shader("Shader/font.vs", "Shader/font.fs");
     glm::mat4 projection = glm::ortho(0.0f, (float)Setting::SCR_WIDTH, 0.0f, (float)Setting::SCR_HEIGHT);
     shader.use();
-    glUniformMatrix4fv(glGetUniformLocation(shader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+    //glUniformMatrix4fv(glGetUniformLocation(shader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+    shader.setMat4("projection", projection);
     Text text("font/arial.ttf");
 
     Shader cube("Shader/Cube.vs", "Shader/Cube.fs");
@@ -105,7 +109,7 @@ int main()
     // -----------
     while (!glfwWindowShouldClose(window))
     {
-        ////glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
         gametime.Time_Measure();
         // render
@@ -118,10 +122,7 @@ int main()
         glm::mat4 view = camera.GetViewMatrix();
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)Setting::SCR_WIDTH / (float)Setting::SCR_HEIGHT, 0.1f, 100.0f);
         ////========================================
-        // cubes
-        //cubes->SetPosition(glm::vec3(1,2,1));
-        //cubes->Draw(cube, projection, view);
-        //
+        
         // Line
         //line->SetWidth(100);
         //line->SetScals(glm::vec3(100,5,5));
@@ -129,35 +130,34 @@ int main()
         //line->Draw(LineShader, projection, view);
         //==============
         //TeaPort Renderer
-
+        //
         //ourShader.use();
         //ourShader.setMat4("projection", projection);
         //ourShader.setMat4("view", view);
-
+        //
         //model = glm::translate(model, glm::vec3(0.0f, -0.5f, 0.0f));
         //model = glm::rotate(model, (float)glfwGetTime() * glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         //model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
-
+        //
         //ourShader.setMat4("model", model);
         //ourShader.setFloat("Color", glfwGetTime());
         //ourModel.Draw(ourShader);
         //================
-        //Text Draw
-        //================
-        text.Draw(shader, camera.Position.x, 600.0f, 500.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
-        text.Draw(shader, camera.Position.y, 600.0f, 450.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
-        text.Draw(shader, camera.Position.z, 600.0f, 400.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
-        //================
         if (is_SceneName == "Game")
         {
-            game->Update();
+            game->SetCameraPos(camera.Position);
+            game->Update(gametime.GetDeltaTime());
             game->Draw(projection, view);
             text.Draw(shader, game->GetSceneName(), 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
+
+            text.Draw(shader, camera.Position.x, 600.0f, 500.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+            text.Draw(shader, camera.Position.y, 600.0f, 450.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+            text.Draw(shader, camera.Position.z, 600.0f, 400.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
         }
 
         else if (is_SceneName == "Title")
         {
-            title->Update();
+            title->Update(gametime.GetDeltaTime());
             title->Draw(projection, view);
             text.Draw(shader, title->GetSceneName(), 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
         }
@@ -189,16 +189,10 @@ void key_callback(GLFWwindow* window, int key, int scencode, int action, int mod
     case GLFW_KEY_ESCAPE:
         glfwSetWindowShouldClose(window, true);
         break;
-    case GLFW_KEY_UP:
-        mixValue += 0.1f;
-        break;
-    case GLFW_KEY_DOWN:
-        mixValue -= 0.1f;
-        break;
         //===============
         //Camera movement
     case GLFW_KEY_W:
-        camera.ProcessKeyboard(FORWARD, CameraSpeed * gametime.GetDeltaTime());
+       camera.ProcessKeyboard(FORWARD, CameraSpeed * gametime.GetDeltaTime());
         break;
     case GLFW_KEY_S:
         camera.ProcessKeyboard(BACKWARD, CameraSpeed * gametime.GetDeltaTime());
@@ -247,7 +241,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
     if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
     {
     	cout << "Mouse Clicked right button" << endl;
-        is_SceneName = "Game";
+        is_SceneName = "Game"; 
         camera.reset();
     }
 

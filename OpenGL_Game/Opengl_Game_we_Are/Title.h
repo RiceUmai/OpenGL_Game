@@ -26,7 +26,7 @@ private:
 public:
 	Title();
 	~Title();
-	void Update();
+	void Update(float DeltaTime);
 	void Draw(glm::mat4 projection, glm::mat4 view);
 
 	std::string GetSceneName() { return SceneName; };

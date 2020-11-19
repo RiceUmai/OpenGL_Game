@@ -10,7 +10,6 @@
 #include <math.h>
 #include <vector>
 
-
 #include "Camera.h"
 #include "Shader.h"
 #include "GameTIme.h"
@@ -21,27 +20,36 @@
 #include "Line.h"
 #include "Player.h"
 
+#include "Setting.h"
+
+
 class Game
 {
 private:
 	std::string SceneName = "Game";
 	std::vector<Cube*> Wall;
+	glm::vec3 cameraPos;
 	Player* player;
-	int Wall_Index = 4;
 	Shader shader;
+	int Wall_Index = 4;
+
+	//============================================
+	glm::mat4 view;
+	glm::mat4 projection;
 public:
 	Game();
 	~Game();
-	void Update();
-	void Draw(glm::mat4 view, glm::mat4 projection);
+	void Update(float DeltaTime);
+	void Draw(glm::mat4 projection, glm::mat4 view);
 
 	std::string GetSceneName() { return SceneName; };
+	void SetCameraPos(glm::vec3 pos) { cameraPos = pos; };
 
 	void Reset();
-	
 
 private:
 	void MemoryFree();
-	bool CollisionAABB(Cube* point, Cube* box);
+	bool CollisionAABB(Cube* Target, Cube* box);
+	bool CollisionAABB(glm::vec3 Target, Cube* box);
 };
 
