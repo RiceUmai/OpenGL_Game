@@ -16,7 +16,6 @@
 #include "Model.h"
 #include "Text.h"
 #include "Image.h"
-#include "Cube.h"
 #include "Line.h"
 #include "Player.h"
 #include "Enemy.h"

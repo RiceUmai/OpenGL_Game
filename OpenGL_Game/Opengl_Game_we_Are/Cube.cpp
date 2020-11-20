@@ -73,15 +73,7 @@ void Cube::SetImage(char const* path)
     texture = image.getTextureID();
 }
 
-//collision chacke
-//====================
-bool Cube::CollisionAABB(Cube point, Cube box)
-{
-    return (point.GetMinPos().x >= box.GetMinPos().x && point.maxPos.x <= box.maxPos.x) &&
-        (point.GetMinPos().y >= box.GetMinPos().y && point.maxPos.y <= box.maxPos.y) &&
-        (point.GetMinPos().z >= box.GetMinPos().z && point.maxPos.x <= box.maxPos.z);
-}
-//======================
+
 
 
 //private function

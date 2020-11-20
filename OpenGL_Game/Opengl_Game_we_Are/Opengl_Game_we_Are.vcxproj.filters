@@ -78,6 +78,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTime.h">
@@ -120,6 +123,9 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>

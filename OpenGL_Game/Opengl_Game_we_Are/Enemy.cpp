@@ -2,6 +2,7 @@
 
 Enemy::Enemy()
 {
+	Tag = "Enemy";
 }
 
 Enemy::Enemy(glm::vec3 pos) : Cube(pos)

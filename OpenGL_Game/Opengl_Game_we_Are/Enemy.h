@@ -10,6 +10,7 @@ public:
 	Enemy(float x, float y, float z);
 	~Enemy();
 
+
 	void Update();
 };
 

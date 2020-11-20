@@ -25,6 +25,7 @@ protected:
 	unsigned int VBO, cubeVAO;
 	//float maxX, maxY, maxZ;
 	//float minX, minY, minZ;
+	std::string Tag;
 
 	glm::vec3 Color;
 
@@ -34,7 +35,6 @@ public:
 	Cube(float x, float y, float z);
 	~Cube();
 	
-	void Updata();
 	void Draw(Shader shader, glm::mat4 projection, glm::mat4 view);
 
 	void SetPosition(glm::vec3 pos) { Position = pos; Collision_Update(); };
@@ -53,10 +53,11 @@ public:
 
 	glm::vec3 GetColor() { return Color; };
 
-	bool CollisionAABB(Cube point, Cube box);
-	
+	std::string GetTag() { return Tag; };
+
 protected:
 	void Init();
+	void Updata();
 	void Collision_Update();
 };
 

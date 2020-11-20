@@ -43,7 +43,6 @@ Game::~Game()
 
 void Game::Update(float DeltaTime)
 {
-
 	//glm::vec3 temp = player->GetPosition() -= glm::vec3(0.0, 1.0, 0.0) * DeltaTime;
 	for (int i = 0; i < (Wall.size()); i++)
 	{
@@ -92,7 +91,6 @@ void Game::Draw(glm::mat4 projection, glm::mat4 view)
 	}
 
 	player->Draw(shader,projection, view);
-
 }
 
 void Game::Reset()
