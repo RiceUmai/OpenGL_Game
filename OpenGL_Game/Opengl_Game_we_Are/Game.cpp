@@ -7,7 +7,7 @@ Game::Game() : shader("Shader/Cube.vs", "Shader/Cube.fs")
 	//=======================
 	for (int i= 0; i< Wall_Index; i++)
 	{
-		Wall.push_back(new Cube());
+		Wall.push_back(new Plane());
 		Wall.back()->SetImage("texture/container2.png");
 	}
 
@@ -18,20 +18,25 @@ Game::Game() : shader("Shader/Cube.vs", "Shader/Cube.fs")
 	}
 	//=======================
 
-	player = new Player();
-	player->SetPosition(glm::vec3(0, 10, 0));
 
-	Wall[0]->SetPosition(glm::vec3(10, 0, 0));
+	Wall[0]->SetPosition(glm::vec3(0, 0, 0));
 	Wall[0]->SetScale(glm::vec3(50, 0.5, 50));
-
-	Wall[1]->SetPosition(glm::vec3(0, 30, 0));
+	Wall[1]->SetPosition(glm::vec3(0, 50, 0));
 	Wall[1]->SetScale(glm::vec3(50, 0.5, 50));
-	//Wall[3]->SetPosition(glm::vec3(0, 30,10));
-	//Wall[3]->SetScale(glm::vec3(50, 0.5, 50));
-	//Wall[3]->SetScale(glm::vec3(50, 0.5, 50));
+	
+	Wall[2]->SetPosition(glm::vec3(25, 25, 0));
+	Wall[2]->SetScale(glm::vec3(0.5, 50, 50));
+	Wall[3]->SetPosition(glm::vec3(-25, 25, 0));
+	Wall[3]->SetScale(glm::vec3(0.5, 50, 50));
+
+	Wall[4]->SetPosition(glm::vec3(0, 25, 25));
+	Wall[4]->SetScale(glm::vec3(50, 50, 0.5));
+	Wall[5]->SetPosition(glm::vec3(0, 25, -25));
+	Wall[5]->SetScale(glm::vec3(50, 50, 0.5));
+
 
 	enemy[0]->SetPosition(glm::vec3(0, 30, 30));
-	enemy[1]->SetPosition(glm::vec3(30, 30, 30));
+	enemy[1]->SetPosition(glm::vec3(50, 50, 0.5));
 }
 
 Game::~Game()
@@ -54,7 +59,7 @@ void Game::Update(float DeltaTime)
 
 		else
 		{
-			std::cout << "Wall notCollision" << std::endl;
+			std::cout << "" << std::endl;
 		}
 	}
 
@@ -63,18 +68,15 @@ void Game::Update(float DeltaTime)
 	{
 		if (CollisionAABB(cameraPos, enemy[i]))
 		{
-			std::cout << "Enemy onCollision" << std::endl;
 			break;
 		}
 
 		else
 		{
-			std::cout << "Eeemy notCollision" << std::endl;
 		}
 	}
 
 
-	//player->SetPosition(glm::vec3(temp));
 }
 
 void Game::Draw(glm::mat4 projection, glm::mat4 view)
@@ -90,7 +92,6 @@ void Game::Draw(glm::mat4 projection, glm::mat4 view)
 		enemy[i]->Draw(shader, projection, view);
 	}
 
-	player->Draw(shader,projection, view);
 }
 
 void Game::Reset()

@@ -4,8 +4,7 @@
 class Plane : public Cube
 {
 private:
-	std::vector<Plane> plane;
-	int planeIndex = 4;
+
 public:
 	Plane();
 	~Plane();
