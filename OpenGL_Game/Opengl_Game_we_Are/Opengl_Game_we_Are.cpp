@@ -26,7 +26,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 //const unsigned int SCR_WIDTH = 800;
 //const unsigned int SCR_HEIGHT = 600;
 
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(glm::vec3(0.0f, 10.0f, 0.0f));
 float _lastX = 800;
 float _lastY = 600;
 bool firstMouse = true;
@@ -148,6 +148,7 @@ int main()
             game->SetCameraPos(camera.Position);
             game->Update(gametime.GetDeltaTime());
             game->Draw(projection, view);
+
             text.Draw(shader, game->GetSceneName(), 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
 
             text.Draw(shader, camera.Position.x, 600.0f, 500.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));

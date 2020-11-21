@@ -1,16 +1,25 @@
 #pragma once
+#include <random>
+#include <cmath>
 #include "Cube.h"
+
 class Enemy : public Cube
 {
 private:
-
+	glm::vec3 Direction;
+	float MoveSpeed;
 public:
 	Enemy();
 	Enemy(glm::vec3 pos);
 	Enemy(float x, float y, float z);
 	~Enemy();
 
+	void Update(float DeltaTime);
+	void SetDirection(glm::vec3 dir) { Direction=dir; };
+	glm::vec3 GetDirection() { return Direction; };
 
-	void Update();
+private:
+	float random_float(float min, float max);
+	glm::vec3 random_Direction();
 };
 

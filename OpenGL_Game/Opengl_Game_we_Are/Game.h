@@ -36,7 +36,7 @@ private:
 
 	Shader shader;
 	int Wall_Index = 6;
-	int enermy_Index = 2;
+	int enermy_Index = 20;
 
 	//============================================
 	glm::mat4 view;

@@ -16,7 +16,7 @@ protected:
 	glm::vec3 Position;
 	glm::vec3 Rotation;
 	glm::vec3 Scale;
-	
+
 	glm::vec3 maxPos;
 	glm::vec3 minPos;
 
@@ -34,15 +34,16 @@ public:
 	Cube(glm::vec3 pos);
 	Cube(float x, float y, float z);
 	~Cube();
-	
+
 	void Draw(Shader shader, glm::mat4 projection, glm::mat4 view);
 
 	void SetPosition(glm::vec3 pos) { Position = pos; Collision_Update(); };
 	void SetRotation(glm::vec3 rot, float Angle) { Rotation = rot; angle = Angle; };;
-	void SetScale(glm::vec3 scale) { Scale = scale; Collision_Update();};
+	void SetScale(glm::vec3 scale) { Scale = scale; Collision_Update(); };
 	void SetColor(glm::vec3 color) { Color = color; };
+	void SetTag(std::string tag) { Tag = tag; };
 
-	void SetImage(char const * path);
+	void SetImage(char const* path);
 
 	glm::vec3 GetPosition() { return Position; };
 	glm::vec3 GetRotation() { return Rotation; };
@@ -57,8 +58,6 @@ public:
 
 protected:
 	void Init();
-	void Updata();
+	void Updata(float DeltaTime);
 	void Collision_Update();
 };
-
-

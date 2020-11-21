@@ -9,7 +9,7 @@ Plane::~Plane()
 {
 }
 
-void Plane::Update()
+void Plane::Update(float DeltaTime)
 {
-	Updata();
+	Updata(DeltaTime);
 }

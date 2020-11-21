@@ -9,6 +9,6 @@ public:
 	Plane();
 	~Plane();
 	
-	void Update();
+	void Update(float DeltaTime);
 };
 

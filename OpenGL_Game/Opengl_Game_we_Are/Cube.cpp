@@ -38,7 +38,7 @@ Cube::~Cube()
     glDeleteBuffers(1, &VBO);
 }
 
-void Cube::Updata()
+void Cube::Updata(float DeltaTime)
 {
     Collision_Update();
 }
