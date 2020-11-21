@@ -11,11 +11,13 @@ private:
 public:
 	Enemy();
 	Enemy(glm::vec3 pos);
-	Enemy(float x, float y, float z);
+	Enemy(float rndMin, float rndMax);
 	~Enemy();
 
 	void Update(float DeltaTime);
 	void SetDirection(glm::vec3 dir) { Direction=dir; };
+	void Set_rnd_Position(float min, float max);
+
 	glm::vec3 GetDirection() { return Direction; };
 
 private:

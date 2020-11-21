@@ -37,16 +37,21 @@ Game::Game() : shader("Shader/Cube.vs", "Shader/Cube.fs")
 	Wall[5]->SetScale(glm::vec3(50, 50, 0.5));
 	Wall[5]->SetTag("Back");
 	//=======================
-
+	
 	for (int i = 0; i < enermy_Index; i++)
 	{
 		enemy.push_back(new Enemy());
-		enemy.back()->SetImage("texture/container2.png");
-		enemy[i]->SetPosition(glm::vec3(0, 20, 0));
-		enemy[i]->SetScale(glm::vec3(3, 3, 3));
+		enemy.back()->SetImage("texture/PngItem.png");
+		enemy[i]->SetPosition(glm::vec3(0, 25, 0));
+		//enemy[i]->Set_rnd_Position(-10, 15);
+		enemy[i]->SetScale(glm::vec3(2, 2, 2));
 	}
-
 	//=======================
+	//enemy[0]->SetPosition(glm::vec3(0, 10, 0));
+	//enemy[1]->SetPosition(glm::vec3(0, 20, 0));
+	//enemy[2]->SetPosition(glm::vec3(10, 10, 10));
+	//enemy[3]->SetPosition(glm::vec3(0, 10, 10));
+	//enemy[4]->SetPosition(glm::vec3(10, 10, 0));
 
 }
 
@@ -59,7 +64,6 @@ Game::~Game()
 
 void Game::Update(float DeltaTime)
 {
-
 	//=============================================
 	for (int i = 0; i < enemy.size(); i++)
 	{
@@ -71,16 +75,31 @@ void Game::Update(float DeltaTime)
 			if (CollisionAABB(Wall[j], enemy[i]))
 			{
 				std::string tag = Wall[j]->GetTag();
-				std::cout << tag << std::endl;
-
 				glm::vec3 Reflect_Dir = enemy[i]->GetDirection();
 
 				//Bottom, Top, Right, Left, Front, Back
-				if (tag == "Bottom" || tag == "Top")      Reflect_Dir.y *= Reflect_Dir.y;
-				else if (tag == "Right" || tag == "Left") Reflect_Dir.x *= Reflect_Dir.x;
-				else if (tag == "Front" || tag == "Back") Reflect_Dir.z *= Reflect_Dir.z;
-
+				if (tag == "Bottom" || tag == "Top") Reflect_Dir.y = -Reflect_Dir.y;
+				if (tag == "Right" || tag == "Left") Reflect_Dir.x = -Reflect_Dir.x;
+				if (tag == "Front" || tag == "Back") Reflect_Dir.z = -Reflect_Dir.z;
 				enemy[i]->SetDirection(Reflect_Dir);
+			}
+		}
+
+		//Enemy <-> Enemy onCollision
+		for (int j = i + 1; j < enemy.size() - 1; j++)
+		{
+			if (CollisionAABB(enemy[j], enemy[i]) && glfwGetTime() >= 2)
+			{
+				glm::vec3 Dir1 = enemy[i]->GetDirection();
+				glm::vec3 Dir2 = enemy[j]->GetDirection();
+
+				Dir1.z = -Dir1.z;
+				Dir1.z = -Dir2.z;
+
+				enemy[i]->SetDirection(-Dir2);
+				enemy[j]->SetDirection(-Dir1);
+
+				std::cout << "tst" << std::endl;
 			}
 		}
 
@@ -100,8 +119,6 @@ void Game::Update(float DeltaTime)
 	{
 		if (CollisionAABB(cameraPos, Wall[i]))
 		{
-			std::cout << "onCollision(CameraPos, Walls)" << std::endl;
-			std::cout << "==========================" << std::endl;
 		}
 	}
 	//=============================================
