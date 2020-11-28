@@ -55,6 +55,7 @@ public:
 
 	void Reset();
 
+
 private:
 	void MemoryFree();
 	bool CollisionAABB(Cube* Target, Cube* box);

@@ -45,9 +45,6 @@
     <ClCompile Include="stb_image.c">
       <Filter>C_File</Filter>
     </ClCompile>
-    <ClCompile Include="Title.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -84,6 +81,12 @@
     <ClCompile Include="Plane.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="ScreenRender.cpp">
+      <Filter>PostPocssing</Filter>
+    </ClCompile>
+    <ClCompile Include="quad.cpp">
+      <Filter>PostPocssing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTime.h">
@@ -91,9 +94,6 @@
     </ClInclude>
     <ClInclude Include="Setting.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Title.h">
-      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Scene</Filter>
@@ -130,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="Plane.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenRender.h">
+      <Filter>PostPocssing</Filter>
+    </ClInclude>
+    <ClInclude Include="quad.h">
+      <Filter>PostPocssing</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

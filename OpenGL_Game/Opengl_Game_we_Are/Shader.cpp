@@ -7,7 +7,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 	std::string geometryCode;
 	std::ifstream vShaderFile;
 	std::ifstream fShaderFile;
-
+	
 	vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 	fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 	try
@@ -55,6 +55,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 	if (!success)
 	{
 		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
+		std::cout << "ERROR::" << vertexPath << "::" << fragmentPath << std::endl;
 		std::cout << "ERROR::SHADER::FLRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
@@ -65,7 +66,12 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 
 	glDeleteShader(vertex);
 	glDeleteShader(fragment);
-	std::cout << "shader file Success" << std::endl;
+	std::cout << "shader file Success::"<< vertexPath << "::" << fragmentPath << std::endl;
+}
+
+Shader::~Shader()
+{
+//	glDeleteProgram(ID);
 }
 
 void Shader::use()

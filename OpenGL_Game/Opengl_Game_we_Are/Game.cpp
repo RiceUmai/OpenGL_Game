@@ -1,6 +1,8 @@
 #include "Game.h"
 
-Game::Game() : shader("Shader/Cube.vs", "Shader/Cube.fs"), text("font/arial.ttf"), fontShader("Shader/font.vs", "Shader/font.fs")
+Game::Game() : shader("Shader/Cube.vs", "Shader/Cube.fs"),
+text("font/arial.ttf"),
+fontShader("Shader/font.vs", "Shader/font.fs")
 {
 	font_projection = glm::ortho(0.0f, (float)Setting::SCR_WIDTH, 0.0f, (float)Setting::SCR_HEIGHT);
 	fontShader.use();
@@ -41,7 +43,7 @@ Game::Game() : shader("Shader/Cube.vs", "Shader/Cube.fs"), text("font/arial.ttf"
 	Wall[5]->SetScale(glm::vec3(50, 50, 0.5));
 	Wall[5]->SetTag("Back");
 	//=======================
-	
+
 	for (int i = 0; i < enermy_Index; i++)
 	{
 		enemy.push_back(new Enemy());
@@ -106,7 +108,7 @@ void Game::Update(float DeltaTime)
 		}
 
 		//Player <-> Enemy onCollision
-		if (CollisionAABB(cameraPos, enemy[i]) || glfwGetTime() >= 10.0f)
+		if (CollisionAABB(cameraPos, enemy[i]))
 		{
 			delete enemy[i];
 			enemy.erase(enemy.begin() + i);
@@ -143,9 +145,9 @@ void Game::Draw(glm::mat4 projection, glm::mat4 view)
 	//===============================================
 	text.Draw(fontShader, "Enemy : " + std::to_string(Enemy_cout), 700.0f, 700.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
 	text.Draw(fontShader, "Time : " + std::to_string(Game_Time), 25.0f, 700.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
-	
+
 	text.Draw(fontShader, SceneName, 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
-	
+
 	text.Draw(fontShader, cameraPos.x, 600.0f, 500.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
 	text.Draw(fontShader, cameraPos.y, 600.0f, 450.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
 	text.Draw(fontShader, cameraPos.z, 600.0f, 400.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));

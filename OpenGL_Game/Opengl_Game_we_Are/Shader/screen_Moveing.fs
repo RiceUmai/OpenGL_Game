@@ -10,7 +10,7 @@ void main()
 {
     vec2 temp = TexCoords;
     temp.x += 0.5f;
-    vec3 col = texture(screenTexture, TexCoords).rgb;
+    vec3 col = texture(screenTexture, TexCoords + sin(Time)).rgb;
 
     FragColor = vec4(col, 1.0f);
 }

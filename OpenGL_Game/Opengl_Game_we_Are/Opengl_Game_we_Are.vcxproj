@@ -156,10 +156,11 @@
     <ClCompile Include="Opengl_Game_we_Are.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="quad.cpp" />
+    <ClCompile Include="ScreenRender.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stb_image.c" />
     <ClCompile Include="Text.cpp" />
-    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -173,10 +174,11 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="quad.h" />
+    <ClInclude Include="ScreenRender.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Text.h" />
-    <ClInclude Include="Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
