@@ -34,8 +34,10 @@ Cube::Cube(float x, float y, float z)
 
 Cube::~Cube()
 {
+    glDeleteTextures(1, &texture);
     glDeleteVertexArrays(1, &cubeVAO);
     glDeleteBuffers(1, &VBO);
+    delete image;
 }
 
 void Cube::Updata(float DeltaTime)
@@ -69,8 +71,8 @@ void Cube::Draw(Shader shader, glm::mat4 projection, glm::mat4 view)
 
 void Cube::SetImage(char const* path)
 {
-    Image image(path);
-    texture = image.getTextureID();
+    image = new Image((path));
+    texture = image->getTextureID();
 }
 
 

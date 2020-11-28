@@ -88,7 +88,7 @@ int main()
 
 	//Scene Add
 	 //=================================
-	Game* game = new Game();
+	game = new Game();
 	//=================================
 
 	scrennRender = new ScreenRender();
@@ -178,7 +178,8 @@ void key_callback(GLFWwindow* window, int key, int scencode, int action, int mod
 		break;
 		//===============
 	case GLFW_KEY_R:
-		camera.Position = glm::vec3(0, 0, 0);
+		//camera.Position = glm::vec3(0, 0, 0);
+		game->Reset();
 
 	default:
 		cout << "Pressed default Key " << endl;
@@ -216,7 +217,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 		cout << "Mouse Clicked right button" << endl;
 		is_SceneName = "Game";
 		_quad->Previous_Shaders_indice();
-		camera.reset();
+		//camera.reset();
 	}
 
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
@@ -224,7 +225,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 		cout << "Mouse Clicked Left left" << endl;
 		//is_SceneName = "Title";
 		_quad->Next_Shaders_indice();
-		camera.reset();
+		//camera.reset();
 	}
 }
 //==========================================================

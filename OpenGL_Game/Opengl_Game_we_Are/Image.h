@@ -11,7 +11,7 @@ private:
 	unsigned int textureID;
 public:
 	Image(char const* path);
-
+	~Image();
 	unsigned int getTextureID() { return textureID; };
 };
 

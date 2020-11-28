@@ -49,27 +49,21 @@ fontShader("Shader/font.vs", "Shader/font.fs")
 		enemy.push_back(new Enemy());
 		enemy.back()->SetImage("texture/PngItem.png");
 		enemy[i]->SetPosition(glm::vec3(0, 25, 0));
-		//enemy[i]->Set_rnd_Position(-10, 15);
 		enemy[i]->SetScale(glm::vec3(2, 2, 2));
 	}
-	//=======================
-	//enemy[0]->SetPosition(glm::vec3(0, 10, 0));
-	//enemy[1]->SetPosition(glm::vec3(0, 20, 0));
-	//enemy[2]->SetPosition(glm::vec3(10, 10, 10));
-	//enemy[3]->SetPosition(glm::vec3(0, 10, 10));
-	//enemy[4]->SetPosition(glm::vec3(10, 10, 0));
-
 }
 
 Game::~Game()
 {
 	std::cout << "Delet Game" << std::endl;
 	shader.ShaderDelete();
+	fontShader.ShaderDelete();
 	MemoryFree();
 }
 
 void Game::Update(float DeltaTime)
 {
+	if (Result) return;
 	//=============================================
 	for (int i = 0; i < enemy.size(); i++)
 	{
@@ -90,6 +84,7 @@ void Game::Update(float DeltaTime)
 				enemy[i]->SetDirection(Reflect_Dir);
 			}
 		}
+
 
 		//Enemy <-> Enemy onCollision
 		for (int j = i + 1; j < enemy.size() - 1; j++)
@@ -128,10 +123,31 @@ void Game::Update(float DeltaTime)
 	//=============================================
 	Game_Time -= DeltaTime;
 	Enemy_cout = enemy.size();
+
+
+	if (Game_Time <= 0)
+	{
+		Game_Time = 0;
+		TimeOut = true;
+		Result = true;
+	}
+
+	if (enemy.size() == 0)
+	{
+		GameClear = true;
+		Result = true;
+	}
 }
 
 void Game::Draw(glm::mat4 projection, glm::mat4 view)
 {
+	if (Result)
+	{
+		if (TimeOut) Result_text = "Time Out";
+		else if (GameClear) Result_text = "Game Clear";
+
+		text.Draw(fontShader, Result_text, 300.0f, 500.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+	}
 
 	for (int i = 0; i < Wall.size(); i++)
 	{
@@ -156,18 +172,35 @@ void Game::Draw(glm::mat4 projection, glm::mat4 view)
 
 void Game::Reset()
 {
+	MemoryFree();
+
+	for (int i = 0; i < enermy_Index; i++)
+	{
+		enemy.push_back(new Enemy());
+		enemy.back()->SetImage("texture/PngItem.png");
+		enemy[i]->SetPosition(glm::vec3(0, 25, 0));
+		enemy[i]->SetScale(glm::vec3(2, 2, 2));
+	}
 
 }
 
 void Game::MemoryFree()
 {
-	for (int i = 0; i < Wall.size(); i++)
+	//for (int i = 0; i < Wall.size(); i++)
+	//{
+	//	delete Wall[i];
+	//	Wall.erase(Wall.begin() + i);
+	//}
+
+	for (int i = 0; i < enemy.size(); i++)
 	{
-		delete Wall[i];
+		delete enemy[i];
+		enemy.erase(enemy.begin() + i);
 	}
 }
 
 //collision chacke
+//====================
 //====================
 bool Game::CollisionAABB(Cube* Target, Cube* box)
 {

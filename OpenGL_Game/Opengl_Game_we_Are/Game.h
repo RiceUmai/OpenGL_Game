@@ -38,9 +38,14 @@ private:
 	int Wall_Index = 6;
 	int enermy_Index = 50;
 
-	float Game_Time = 120;
+	float Game_Time = 60;
 	int Enemy_cout;
 
+
+	bool GameClear = false;
+	bool TimeOut = false;
+	bool Result = false;
+	std::string Result_text;
 	//============================================
 	glm::mat4 view;
 	glm::mat4 projection;

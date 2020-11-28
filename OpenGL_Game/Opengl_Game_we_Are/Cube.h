@@ -29,6 +29,8 @@ protected:
 
 	glm::vec3 Color;
 
+	Image* image;
+
 public:
 	Cube();
 	Cube(glm::vec3 pos);

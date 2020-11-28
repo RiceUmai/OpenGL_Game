@@ -43,3 +43,8 @@ Image::Image(char const* path)
         stbi_image_free(data);
     }
 }
+
+Image::~Image()
+{
+    glDeleteTextures(1, &textureID);
+}
