@@ -14,29 +14,32 @@
 #include "Shader.h"
 #include "GameTIme.h"
 #include "Model.h"
-#include "Text.h"
 #include "Image.h"
-#include "Line.h"
+#include "Text.h"
 
+#include "Line.h"
 #include "Enemy.h"
 #include "Plane.h"
 
 #include "Setting.h"
 
-
 class Game
 {
 private:
+	glm::mat4 font_projection;
 	std::string SceneName = "Game";
-	
 	std::vector<Plane*> Wall;
 	std::vector<Enemy*> enemy;
-
 	glm::vec3 cameraPos;
-
+	Text text;
+	Shader fontShader;
 	Shader shader;
+
 	int Wall_Index = 6;
 	int enermy_Index = 50;
+
+	float Game_Time = 120;
+	int Enemy_cout;
 
 	//============================================
 	glm::mat4 view;

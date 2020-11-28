@@ -74,5 +74,8 @@
     <ClInclude Include="Cube.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="test.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

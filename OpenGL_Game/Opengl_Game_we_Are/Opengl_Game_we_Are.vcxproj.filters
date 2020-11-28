@@ -28,6 +28,9 @@
     <Filter Include="UI">
       <UniqueIdentifier>{52f00c52-9ce8-4b86-be55-a43481cd640f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PostPocssing">
+      <UniqueIdentifier>{39fc1f91-990c-4cab-8c7f-b89a05ccb701}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Opengl_Game_we_Are.cpp">

@@ -21,8 +21,9 @@ Enemy::~Enemy()
 
 void Enemy::Update(float DeltaTime)
 {
-	angle = glfwGetTime();
+	angle = glfwGetTime() * 5;
 	Rotation = Direction;
+	Rotation.z = 0;
 	Position += Direction * DeltaTime * MoveSpeed;
 	Updata(DeltaTime);
 }
