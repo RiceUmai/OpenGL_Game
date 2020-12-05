@@ -37,6 +37,7 @@ Cube::~Cube()
     glDeleteTextures(1, &texture);
     glDeleteVertexArrays(1, &cubeVAO);
     glDeleteBuffers(1, &VBO);
+    glBindTexture(GL_TEXTURE_2D, 0);
     delete image;
 }
 

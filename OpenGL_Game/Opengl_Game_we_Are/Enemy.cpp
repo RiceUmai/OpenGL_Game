@@ -12,10 +12,6 @@ Enemy::Enemy(glm::vec3 pos) : Cube(pos)
 
 }
 
-Enemy::Enemy(float rndMin, float rndMax)
-{}
-
-
 Enemy::~Enemy()
 {
 }

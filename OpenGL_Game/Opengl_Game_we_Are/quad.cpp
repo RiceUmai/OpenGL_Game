@@ -12,6 +12,8 @@ quad::~quad()
 	glDeleteBuffers(1, &quadVBO);
 }
 
+//===================================================
+//===================================================
 void quad::Draw()
 {
 	ShaderControl();
@@ -27,7 +29,12 @@ void quad::Draw(Shader shader)
 	glBindTexture(GL_TEXTURE_2D, Texture);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
+//===================================================
+//===================================================
 
+/// <summary>
+/// Shaders(Vector Type) index increase
+/// </summary>
 void quad::Next_Shaders_indice()
 {
 	if (Shaders_indice < Shaders.size() - 1)	Shaders_indice++;
@@ -36,15 +43,20 @@ void quad::Next_Shaders_indice()
 	std::cout << Shaders_indice << std::endl;
 }
 
+/// <summary>
+/// Shaders(Vector Type) index decrease
+/// </summary>
 void quad::Previous_Shaders_indice()
 {
 	if (Shaders_indice > 0) Shaders_indice--;
 	else Shaders_indice = 0;
 
 	std::cout << Shaders_indice << std::endl;
-
 }
 
+/// <summary>
+/// Class Init
+/// </summary>
 void quad::Init()
 {
 	float quadVertices[] =
@@ -71,7 +83,7 @@ void quad::Init()
 }
 
 /// <summary>
-/// Shader init
+/// Shader subscription
 /// </summary>
 void quad::ShadersInit()
 {
@@ -84,7 +96,7 @@ void quad::ShadersInit()
 }
 
 /// <summary>
-/// 
+/// Shader Subscription
 /// </summary>
 void quad::ShaderControl()
 {

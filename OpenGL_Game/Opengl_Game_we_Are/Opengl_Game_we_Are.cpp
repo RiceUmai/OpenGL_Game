@@ -25,10 +25,6 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 
-//// settings
-//const unsigned int SCR_WIDTH = 800;
-//const unsigned int SCR_HEIGHT = 600;
-
 Camera camera(glm::vec3(0.0f, 10.0f, 0.0f));
 float _lastX = 800;
 float _lastY = 600;
@@ -70,6 +66,8 @@ int main()
 		return -1;
 	}
 
+	//===========================
+	//===========================
 	//callback setup
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -77,8 +75,11 @@ int main()
 	glfwSetCursorPosCallback(window, cursor_position_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
+	//===========================
+	//===========================
 
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	
 	//==========================
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
@@ -104,22 +105,15 @@ int main()
 
 		gametime.Time_Measure();
 		// render (Scene Draw)
-	
-		//glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-
-		//// ------
-		//glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		//glEnable(GL_DEPTH_TEST);
-
-		// ------
+		//------Set Drawing Screen Targer(FrameBuffer)
 		scrennRender->use();
-
-		////========================================
+		
+		//Camre Propertys
+		//========================================
 		glm::mat4 model = glm::mat4(1.0f);
 		glm::mat4 view = camera.GetViewMatrix();
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)Setting::SCR_WIDTH / (float)Setting::SCR_HEIGHT, 0.1f, 100.0f);
-		////========================================
+		//========================================
 		if (is_SceneName == "Game")
 		{
 			game->SetCameraPos(camera.Position);
@@ -129,7 +123,7 @@ int main()
 		//======================================
 		//======================================
 		//Post Processing main
-		scrennRender->free();
+		scrennRender->free(); //Set default FrameBuffer
 		_quad->SetTexture(scrennRender->GetTextureColorbuffer());
 		_quad->Draw();
 		//==================
@@ -147,6 +141,8 @@ int main()
 }
 
 
+
+//============================================
 //CallBack function============================================
 //============================================
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -177,9 +173,10 @@ void key_callback(GLFWwindow* window, int key, int scencode, int action, int mod
 		camera.ProcessKeyboard(RIGHT, CameraSpeed * gametime.GetDeltaTime());
 		break;
 		//===============
-	case GLFW_KEY_R:
+	case GLFW_KEY_SPACE:
 		//camera.Position = glm::vec3(0, 0, 0);
 		game->Reset();
+		break;
 
 	default:
 		cout << "Pressed default Key " << endl;
@@ -228,4 +225,6 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 		//camera.reset();
 	}
 }
+//==========================================================
+//==========================================================
 //==========================================================

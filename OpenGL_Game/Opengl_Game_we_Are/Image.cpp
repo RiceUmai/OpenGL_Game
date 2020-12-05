@@ -1,5 +1,9 @@
 #include "Image.h"
 
+/// <summary>
+/// Image Constructor
+/// </summary>
+/// <param name="path">Image File Path</param>
 Image::Image(char const* path)
 {
     glGenTextures(1, &textureID);

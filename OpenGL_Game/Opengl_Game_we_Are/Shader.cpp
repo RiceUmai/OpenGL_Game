@@ -1,5 +1,10 @@
 #include "Shader.h"
 
+/// <summary>
+/// Shader Class Constructor
+/// </summary>
+/// <param name="vertexPath">vertex shader File Path</param>
+/// <param name="fragmentPath">fragment Shader file Path</param>
 Shader::Shader(const char* vertexPath, const char* fragmentPath)
 {
 	std::string vertexCode;
@@ -79,6 +84,9 @@ void Shader::use()
 	glUseProgram(ID);
 }
 
+//==============================================================
+//==============================================================
+//Variable(CPU) -> Shader Variable(GPU)
 void Shader::setBool(const std::string& name, bool value) const
 {
 	glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
@@ -128,6 +136,8 @@ void Shader::setMat4(const std::string& name, const glm::mat4& mat) const
 {
 	glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
+//==============================================================
+//==============================================================
 
 void Shader::ShaderDelete()
 {

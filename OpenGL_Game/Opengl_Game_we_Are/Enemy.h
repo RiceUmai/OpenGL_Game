@@ -11,7 +11,6 @@ private:
 public:
 	Enemy();
 	Enemy(glm::vec3 pos);
-	Enemy(float rndMin, float rndMax);
 	~Enemy();
 
 	void Update(float DeltaTime);

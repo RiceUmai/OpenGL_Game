@@ -23,6 +23,8 @@
 
 #include "Setting.h"
 
+#define MaxTime 60;
+
 class Game
 {
 private:
@@ -36,10 +38,9 @@ private:
 	Shader shader;
 
 	int Wall_Index = 6;
-	int enermy_Index = 50;
+	int enermy_Index = 20;
 
-	float Game_Time = 60;
-	int Enemy_cout;
+	float Game_Time = MaxTime;
 
 
 	bool GameClear = false;
@@ -59,7 +60,6 @@ public:
 	void SetCameraPos(glm::vec3 pos) { cameraPos = pos; };
 
 	void Reset();
-
 
 private:
 	void MemoryFree();

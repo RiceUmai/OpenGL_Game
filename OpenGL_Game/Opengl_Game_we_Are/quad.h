@@ -30,8 +30,8 @@ public:
 	void Draw();
 	void Draw(Shader shader);
 	
-	void Next_Shaders_indice();
-	void Previous_Shaders_indice();
+	void Next_Shaders_indice(); //useing shader Controller index(Next)
+	void Previous_Shaders_indice(); //useing shader Controller index(Previous)
 
 private:
 	void Init();

@@ -49,7 +49,7 @@ fontShader("Shader/font.vs", "Shader/font.fs")
 		enemy.push_back(new Enemy());
 		enemy.back()->SetImage("texture/PngItem.png");
 		enemy[i]->SetPosition(glm::vec3(0, 25, 0));
-		enemy[i]->SetScale(glm::vec3(2, 2, 2));
+		enemy[i]->SetScale(glm::vec3(5, 5, 5));
 	}
 }
 
@@ -122,7 +122,6 @@ void Game::Update(float DeltaTime)
 	}
 	//=============================================
 	Game_Time -= DeltaTime;
-	Enemy_cout = enemy.size();
 
 
 	if (Game_Time <= 0)
@@ -143,10 +142,9 @@ void Game::Draw(glm::mat4 projection, glm::mat4 view)
 {
 	if (Result)
 	{
-		if (TimeOut) Result_text = "Time Out";
-		else if (GameClear) Result_text = "Game Clear";
-
-		text.Draw(fontShader, Result_text, 300.0f, 500.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+		if (TimeOut) Result_text = "Time Out, Press SpaceBar to game reset";
+		else if (GameClear) Result_text = "Game Clear, Press SpaceBar to game reset";
+		text.Draw(fontShader, Result_text, 50.0f, 500.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
 	}
 
 	for (int i = 0; i < Wall.size(); i++)
@@ -159,14 +157,14 @@ void Game::Draw(glm::mat4 projection, glm::mat4 view)
 		enemy[i]->Draw(shader, projection, view);
 	}
 	//===============================================
-	text.Draw(fontShader, "Enemy : " + std::to_string(Enemy_cout), 700.0f, 700.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+	text.Draw(fontShader, "Enemy : " + std::to_string(enemy.size()), 700.0f, 700.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
 	text.Draw(fontShader, "Time : " + std::to_string(Game_Time), 25.0f, 700.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
 
 	text.Draw(fontShader, SceneName, 25.0f, 25.0f, 1.0f, glm::vec3(0.5f, 0.1f, 0.5f));
 
-	text.Draw(fontShader, cameraPos.x, 600.0f, 500.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
-	text.Draw(fontShader, cameraPos.y, 600.0f, 450.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
-	text.Draw(fontShader, cameraPos.z, 600.0f, 400.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+	text.Draw(fontShader, cameraPos.x, 850.0f, 150.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+	text.Draw(fontShader, cameraPos.y, 850.0f, 100.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
+	text.Draw(fontShader, cameraPos.z, 850.0f, 50.0f, 1.0f, glm::vec3(0.5f, 0.8f, 0.2f));
 	//===============================================
 }
 
@@ -179,9 +177,14 @@ void Game::Reset()
 		enemy.push_back(new Enemy());
 		enemy.back()->SetImage("texture/PngItem.png");
 		enemy[i]->SetPosition(glm::vec3(0, 25, 0));
-		enemy[i]->SetScale(glm::vec3(2, 2, 2));
+		enemy[i]->SetScale(glm::vec3(5, 5, 5));
 	}
 
+	Result = false;
+	TimeOut = false;
+	GameClear = false;
+
+	Game_Time = MaxTime;
 }
 
 void Game::MemoryFree()
@@ -190,13 +193,14 @@ void Game::MemoryFree()
 	//{
 	//	delete Wall[i];
 	//	Wall.erase(Wall.begin() + i);
+	//	Wall.clear();
 	//}
 
 	for (int i = 0; i < enemy.size(); i++)
 	{
 		delete enemy[i];
-		enemy.erase(enemy.begin() + i);
 	}
+	enemy.clear();
 }
 
 //collision chacke

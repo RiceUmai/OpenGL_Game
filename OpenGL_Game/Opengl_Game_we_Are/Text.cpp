@@ -25,7 +25,7 @@ Text::Text(const char* fontPath)
 	{
 		FT_Set_Pixel_Sizes(face, 0, 48);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-		for (unsigned char c = 0; c < 128; c++)
+		for (unsigned char c = 0; c < 128; c++) //ASCII Cood
 		{
 			if (FT_Load_Char(face, c, FT_LOAD_RENDER))
 			{
