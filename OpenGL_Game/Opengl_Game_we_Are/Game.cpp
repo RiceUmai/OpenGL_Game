@@ -11,14 +11,12 @@ fontShader("Shader/font.vs", "Shader/font.fs")
 	std::cout << "Init Game" << std::endl;
 
 	//=======================
+	//Wall Object Init
 	for (int i = 0; i < Wall_Index; i++)
 	{
 		Wall.push_back(new Plane());
 		Wall.back()->SetImage("texture/container2.png");
 	}
-
-	//(Wall Init)
-	//=======================
 	Wall[0]->SetPosition(glm::vec3(0, 0, 0)); //Bottom
 	Wall[0]->SetScale(glm::vec3(50, 0.5, 50));
 	Wall[0]->SetTag("Bottom");
@@ -44,6 +42,8 @@ fontShader("Shader/font.vs", "Shader/font.fs")
 	Wall[5]->SetTag("Back");
 	//=======================
 
+	//=======================
+	//Enemy object Init
 	for (int i = 0; i < enermy_Index; i++)
 	{
 		enemy.push_back(new Enemy());
@@ -51,6 +51,7 @@ fontShader("Shader/font.vs", "Shader/font.fs")
 		enemy[i]->SetPosition(glm::vec3(0, 25, 0));
 		enemy[i]->SetScale(glm::vec3(5, 5, 5));
 	}
+	//=======================
 }
 
 Game::~Game()
@@ -112,15 +113,6 @@ void Game::Update(float DeltaTime)
 	//std::cout << enemy.size() << std::endl;
 
 	//=============================================
-	//=============================================
-
-	for (int i = 0; i < (Wall.size()); i++)
-	{
-		if (CollisionAABB(cameraPos, Wall[i]))
-		{
-		}
-	}
-	//=============================================
 	Game_Time -= DeltaTime;
 
 
@@ -151,7 +143,6 @@ void Game::Draw(glm::mat4 projection, glm::mat4 view)
 	{
 		Wall[i]->Draw(shader, projection, view);
 	}
-
 	for (int i = 0; i < enemy.size(); i++)
 	{
 		enemy[i]->Draw(shader, projection, view);

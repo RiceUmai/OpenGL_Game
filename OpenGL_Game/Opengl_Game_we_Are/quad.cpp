@@ -1,6 +1,6 @@
 #include "quad.h"
 
-quad::quad() : test("Shader/framebuffers_screen.vs", "Shader/framebuffers_screen.fs")
+quad::quad()
 {
 	Init();
 	ShadersInit();
@@ -13,6 +13,7 @@ quad::~quad()
 }
 
 //===================================================
+//Screen Draw
 //===================================================
 void quad::Draw()
 {

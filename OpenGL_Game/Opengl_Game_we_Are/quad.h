@@ -18,10 +18,9 @@ class quad
 {
 private:
 	unsigned int quadVAO, quadVBO;
-	unsigned int Texture;
+	unsigned int Texture; //Drawed Texture in Frame Buffer
 	std::vector<Shader> Shaders;
 	int Shaders_indice = 0;
-	Shader test;
 public:
 	quad();
 	~quad();
