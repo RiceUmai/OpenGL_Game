@@ -1,9 +1,12 @@
-﻿#pragma once
+﻿//======================================================
+//参考サイト　
+//https://learnopengl.com/
+
+#pragma once
 #include "Game.h"
 #include "Setting.h"
 #include "ScreenRender.h"
 #include "quad.h"
-
 
 using namespace std;
 
@@ -133,7 +136,6 @@ int main()
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
 	// glfw: terminate, clearing all previously allocated GLFW resources.
 	// ------------------------------------------------------------------
 	glfwTerminate();
