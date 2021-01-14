@@ -88,10 +88,6 @@ void main()
 ```
 ##その外(post processing)
 
-<center>
-<p>
   <img src="./ScreenShot/postshader2.jpg" width="30%">
   <img src="./ScreenShot/postshader3.jpg" width="30%">
   <img src="./ScreenShot/postshader4.jpg" width="30%">
-</p>
-</center>
