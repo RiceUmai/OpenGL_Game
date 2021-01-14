@@ -1,44 +1,98 @@
-## 테스트
+# OpenGLプロジェット
 
-## Welcome to GitHub Pages
+## 使用言語, ツール
+C++, GLSL  
+Visual Studio 2019, VS Code
 
-You can use the [editor on GitHub](https://github.com/congibab/OpenGL_Game/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## 使用ライブラリ
+GLFW3(https://www.glfw.org/)  
+glad(https://glad.dav1d.de/)  
+glm(https://github.com/g-truc/glm)  
+std_image(https://github.com/nothings/stb)  
+FreeType(https://www.freetype.org/)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## 参考サイト
+Learn opengl(https://learnopengl.com/)
 
-### Markdown
+# ゲーム画面
+<center>
+<p>
+    <img src="./ScreenShot/gameScene1.gif" width="45%">
+    <img src="./ScreenShot/gameScene2.gif" width="45%">
+</p>
+</center>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## 説明
+1. W,S,A,Sでカメラ移動
+2. マウス移動でカメラ回転
+3. Time(左上)が0になったらゲームオーバー
+4. Enemy(右上)キューブの数
+5. 右下(Canera position) 上からｘ、ｙ、ｚ
+6. キューブに当たったらキューブは消える。（Enemyの数字が減少する）
 
-```markdown
-Syntax highlighted code block
+## 目的
+ゲームシーン内にあるキューブを全て消えさせばゲームクリア
 
-# Header 1
-## Header 2
-### Header 3
+# 当たり判定
+```cpp
+bool Game::CollisionAABB(Cube* Target, Cube* box)
+{
+	return (Target->GetMinPos().x <= box->GetMaxPos().x && Target->GetMaxPos().x >= box->GetMinPos().x) &&
+		(Target->GetMinPos().y <= box->GetMaxPos().y && Target->GetMaxPos().y >= box->GetMinPos().y) &&
+		(Target->GetMinPos().z <= box->GetMaxPos().z && Target->GetMaxPos().z >= box->GetMinPos().z);
+}
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+bool Game::CollisionAABB(glm::vec3 Target, Cube* box)
+{
+	return  (Target.x <= box->GetMaxPos().x && Target.x >= box->GetMinPos().x) &&
+		(Target.y <= box->GetMaxPos().y && Target.y >= box->GetMinPos().y) &&
+		(Target.z <= box->GetMaxPos().z && Target.z >= box->GetMinPos().z);
+}
 ```
 
+# post processing
 <center><img src="./ScreenShot/Shader1.gif" width="50%"></center>
 
-![testx](./ScreenShot/gameScene.jpg)
-![logo] (./logo.jpg)
+## vertex shader
+```Cpp
+  #version 330 core
+out vec4 FragColor;
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+in vec2 TexCoords;
 
-### Jekyll Themes
+uniform sampler2D screenTexture;
+uniform float Time;
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/congibab/OpenGL_Game/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+void main()
+{
+    vec2 temp = TexCoords;
+    temp.x += 0.5f;
+    vec3 col = texture(screenTexture, TexCoords + sin(Time)).rgb;
 
-### Support or Contact
+    FragColor = vec4(col, 1.0f);
+}
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## fragmant shader
+```Cpp
+#version 330 core
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec2 aTexCoords;
+
+out vec2 TexCoords;
+
+void main()
+{
+    TexCoords = aTexCoords;
+    gl_Position = vec4(aPos.x, aPos.y, 0.0f, 1.0f);
+}
+```
+##その外(post processing)
+
+<center>
+<p>
+  <img src="./ScreenShot/Shader2.gif" width="30%">
+  <img src="./ScreenShot/Shader3.gif" width="30%">
+  <img src="./ScreenShot/Shader4.gif" width="30%">
+</p>
+</center>
