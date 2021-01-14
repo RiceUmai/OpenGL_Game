@@ -1,3 +1,5 @@
+## 테스트
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/congibab/OpenGL_Game/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
@@ -26,6 +28,9 @@ Syntax highlighted code block
 [Link](url) and ![Image](src)
 ```
 
+<center><img src="./ScreenShot/Shader1.gif" width="50%"></center>
+
+![testx](./ScreenShot/gameScene.jpg)
 ![logo] (./logo.jpg)
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
