@@ -16,10 +16,7 @@ Learn opengl(https://learnopengl.com/)
 
 # ゲーム画面
 <center>
-<p>
-    <img src="./ScreenShot/gameScene1.gif" width="45%">
-    <img src="./ScreenShot/gameScene2.gif" width="45%">
-</p>
+   <img src="./ScreenShot/gameScene1.gif" width="40%">
 </center>
 
 ## 説明
@@ -51,8 +48,10 @@ bool Game::CollisionAABB(glm::vec3 Target, Cube* box)
 ```
 
 # post processing
-<center><img src="./ScreenShot/Shader1.gif" width="50%"></center>
+<center><img src="./ScreenShot/Shader1.gif" width="40%"></center>
 
+## 説明
+マウス右左クリックでShaderを変更
 ## vertex shader
 ```Cpp
   #version 330 core
@@ -91,8 +90,8 @@ void main()
 
 <center>
 <p>
-  <img src="./ScreenShot/Shader2.gif" width="30%">
-  <img src="./ScreenShot/Shader3.gif" width="30%">
-  <img src="./ScreenShot/Shader4.gif" width="30%">
+  <img src="./ScreenShot/postshader2.jpg" width="30%">
+  <img src="./ScreenShot/postshader3.jpg" width="30%">
+  <img src="./ScreenShot/postshader4.jpg" width="30%">
 </p>
 </center>
