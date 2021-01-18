@@ -1,18 +1,18 @@
 # OpenGLプロジェット
 
 ## 使用言語, ツール
-C++, GLSL  
+C++, GLSL
 Visual Studio 2019, VS Code
 
 ## 使用ライブラリ
-[GLFW3](https://www.glfw.org/)  
-[glad](https://glad.dav1d.de/)  
-[glm](https://github.com/g-truc/glm)  
-[std_image](https://github.com/nothings/stb)  
+[GLFW3](https://www.glfw.org/),
+[glad](https://glad.dav1d.de/),
+[glm](https://github.com/g-truc/glm),
+[std_image](https://github.com/nothings/stb),
 [FreeType](https://www.freetype.org/)
 
 ## 参考サイト
-Learn opengl(https://learnopengl.com/)
+[Learn opengl](https://learnopengl.com/)
 
 # ゲーム画面
 <center>
@@ -38,13 +38,6 @@ bool Game::CollisionAABB(Cube* Target, Cube* box)
 		(Target->GetMinPos().y <= box->GetMaxPos().y && Target->GetMaxPos().y >= box->GetMinPos().y) &&
 		(Target->GetMinPos().z <= box->GetMaxPos().z && Target->GetMaxPos().z >= box->GetMinPos().z);
 }
-
-bool Game::CollisionAABB(glm::vec3 Target, Cube* box)
-{
-	return  (Target.x <= box->GetMaxPos().x && Target.x >= box->GetMinPos().x) &&
-		(Target.y <= box->GetMaxPos().y && Target.y >= box->GetMinPos().y) &&
-		(Target.z <= box->GetMaxPos().z && Target.z >= box->GetMinPos().z);
-}
 ```
 
 # post processing
@@ -52,6 +45,49 @@ bool Game::CollisionAABB(glm::vec3 Target, Cube* box)
 
 ## 説明
 マウス右左クリックでShaderを変更
+## 適用の流れ
+1. FrameBuffer生成
+2. Sceneを描く場所を指定(**生成したFrameBuffer**)
+3. 指定したFrameBufferにGameSceneを描いて保存
+4. **生成**したFrameBufferを**default** FrameBufferに変更
+5. PostProcessingを適用したいなオブジェクト生成（四角形）
+6. 四角形にTexture(**別のFrameBuffer保存されているScene**)適用する
+7. そしてShaderを適用する
+
+## C++(Main.cpp)
+```Cpp
+	while (!glfwWindowShouldClose(window))
+	{
+		gametime.Time_Measure();
+		//------Set Drawing Screen Targer(FrameBuffer)
+    //------FrameBuffer設定
+    scrennRender->use();
+
+//==============================================================
+//中略
+//==============================================================
+		
+    //scrennRenderにGame Sceneを描いて保存
+    if (is_SceneName == "Game")
+		{
+			game->SetCameraPos(camera.Position);
+			game->Update(gametime.GetDeltaTime());
+			game->Draw(projection, view);
+		}
+
+		//Post Processing 適用
+    //四角形の中にShaderを適用してscrennRender(保存したGameScene) textureを適用する
+		scrennRender->free();
+		_quad->SetTexture(scrennRender->GetTextureColorbuffer());
+		_quad->Draw();
+		//==================
+
+		gametime.DeltaTime_Update();
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+```
+
 ## vertex shader
 ```Cpp
   #version 330 core
@@ -86,11 +122,37 @@ void main()
     gl_Position = vec4(aPos.x, aPos.y, 0.0f, 1.0f);
 }
 ```
-##その外(post processing)
-<center>
+# その外(post processing)
+<!-- <center>
 <p>
   <img src="./ScreenShot/postshader2.JPG" width="30%">
   <img src="./ScreenShot/postshader3.JPG" width="30%">
   <img src="./ScreenShot/postshader4.JPG" width="30%">
 </p>
-</center>
+</center> -->
+## 画面に分割
+<center><img src="./ScreenShot/postshader2.JPG" width="40%"></center>
+
+## モザイク
+<center><img src="./ScreenShot/postshader3.JPG" width="40%"></center>
+
+## グレースケール
+<center><img src="./ScreenShot/postshader4.JPG" width="40%"></center>
+
+<details>
+<summary>Source Code</summary>
+
+```Cpp
+#version 330 core
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec2 aTexCoords;
+
+out vec2 TexCoords;
+
+void main()
+{
+    TexCoords = aTexCoords;
+    gl_Position = vec4(aPos.x, aPos.y, 0.0f, 1.0f);
+}
+```
+</details>
