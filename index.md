@@ -27,9 +27,6 @@ Visual Studio 2019, VS Code
 5. 右下(Canera position) 上からｘ、ｙ、ｚ
 6. キューブに当たったらキューブは消える。（Enemyの数字が減少する）
 
-## 目的
-ゲームシーン内にあるキューブを全て消えさせばゲームクリア
-
 # 当たり判定
 ```cpp
 bool Game::CollisionAABB(Cube* Target, Cube* box)
@@ -55,32 +52,21 @@ bool Game::CollisionAABB(Cube* Target, Cube* box)
 7. そしてShaderを適用する
 
 ## C++(Main.cpp)
-```Cpp
+```cpp
 	while (!glfwWindowShouldClose(window))
 	{
 		gametime.Time_Measure();
-		//------Set Drawing Screen Targer(FrameBuffer)
-    //------FrameBuffer設定
-    scrennRender->use();
+   		scrennRender->use();
 
-//==============================================================
-//中略
-//==============================================================
-		
-    //scrennRenderにGame Sceneを描いて保存
-    if (is_SceneName == "Game")
 		{
 			game->SetCameraPos(camera.Position);
 			game->Update(gametime.GetDeltaTime());
 			game->Draw(projection, view);
 		}
 
-		//Post Processing 適用
-    //四角形の中にShaderを適用してscrennRender(保存したGameScene) textureを適用する
 		scrennRender->free();
 		_quad->SetTexture(scrennRender->GetTextureColorbuffer());
 		_quad->Draw();
-		//==================
 
 		gametime.DeltaTime_Update();
 		glfwSwapBuffers(window);
@@ -122,15 +108,10 @@ void main()
     gl_Position = vec4(aPos.x, aPos.y, 0.0f, 1.0f);
 }
 ```
+
 # その外(post processing)
-<!-- <center>
-<p>
-  <img src="./ScreenShot/postshader2.JPG" width="30%">
-  <img src="./ScreenShot/postshader3.JPG" width="30%">
-  <img src="./ScreenShot/postshader4.JPG" width="30%">
-</p>
 </center> -->
-## 画面に分割
+## 画面分割
 <center><img src="./ScreenShot/postshader2.JPG" width="40%"></center>
 
 ## モザイク
@@ -139,7 +120,7 @@ void main()
 ## グレースケール
 <center><img src="./ScreenShot/postshader4.JPG" width="40%"></center>
 
-<details>
+<!-- <details>
 <summary>Source Code</summary>
 
 ```Cpp
@@ -155,4 +136,5 @@ void main()
     gl_Position = vec4(aPos.x, aPos.y, 0.0f, 1.0f);
 }
 ```
-</details>
+
+</details> -->
