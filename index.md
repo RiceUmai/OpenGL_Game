@@ -31,6 +31,7 @@ Visual Studio 2019, VS Code
 ## Cube.cpp(constructor)
 <details>
 <summary>Source codeを見る</summary>
+<div markdown="1">
 
 ```cpp
 Cube::Cube(glm::vec3 pos)
@@ -114,6 +115,7 @@ void Cube::Init()
     glEnableVertexAttribArray(2);
 }
 ```
+ 
 </details>
 
 ## cube.cpp(座標、回転、スケール)
