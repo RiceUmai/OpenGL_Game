@@ -5,11 +5,11 @@ C++, GLSL
 Visual Studio 2019, VS Code
 
 ## 使用ライブラリ
-GLFW3(https://www.glfw.org/)  
-glad(https://glad.dav1d.de/)  
-glm(https://github.com/g-truc/glm)  
-std_image(https://github.com/nothings/stb)  
-FreeType(https://www.freetype.org/)
+[GLFW3](https://www.glfw.org/)  
+[glad](https://glad.dav1d.de/)  
+[glm](https://github.com/g-truc/glm)  
+[std_image](https://github.com/nothings/stb)  
+[FreeType](https://www.freetype.org/)
 
 ## 参考サイト
 Learn opengl(https://learnopengl.com/)
