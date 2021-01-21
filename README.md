@@ -28,7 +28,7 @@ learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
 
 # プログラム画面
 <center>
-   <img src="./ScreenShot/ProgramScene.jpg" width="70%">
+   <img src="./ScreenShot/ProgramScene.JPG" width="70%">
 </center>
 
 ## プログラム画面説明
@@ -133,8 +133,8 @@ bool Game::CollisionAABB(Cube* Target, Cube* box)
 
 <div>
 <center>
-<img src="./ScreenShot/GameScene.jpg" width="40%">
-<img src="./ScreenShot/ScreenMovement.jpg" width="40%">
+<img src="./ScreenShot/GameScene.JPG" width="40%">
+<img src="./ScreenShot/ScreenMovement.JPG" width="40%">
 </center>
 <center> <strong>左）</strong>適用前、<strong>右）</strong>適用後</center> 
 </div>
