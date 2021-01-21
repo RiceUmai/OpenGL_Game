@@ -19,10 +19,14 @@ FreeType : [https://www.freetype.org/](https://www.freetype.org/)
 
 ## 開発人数 
 個人制作
+
 ## 参考サイト
 learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
 
 # 制作意図
+学校にはUE4授業がないためUE4自分で勉強をチャレンジしました。  
+しかしC++知識が無かったのでgraphics libraryでC++勉強と考えました。  
+その中、Learn openglと言うsiteを見つけてSourc Codeを見なが真似した初めてのProgramになります。
 
 <div style="page-break-before:always"></div>
 
@@ -43,6 +47,7 @@ learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
 1. Texture適用
 2. Cube移動と移動向きによって回転
 3. 当たり判定適用
+
 
 <div style="page-break-before:always"></div>
 
@@ -131,13 +136,11 @@ bool Game::CollisionAABB(Cube* Target, Cube* box)
 ```
 # post processing
 
-<div>
 <center>
 <img src="./ScreenShot/GameScene.JPG" width="40%">
 <img src="./ScreenShot/ScreenMovement.JPG" width="40%">
 </center>
 <center> <strong>左）</strong>適用前、<strong>右）</strong>適用後</center> 
-</div>
 
 ## 説明
 1. マウス**左**クリックで次のShaderに変換
