@@ -17,28 +17,29 @@ fontShader("Shader/font.vs", "Shader/font.fs")
 		Wall.push_back(new Plane());
 		Wall.back()->SetImage("texture/container2.png");
 	}
+	////=======================
 	Wall[0]->SetPosition(glm::vec3(0, 0, 0)); //Bottom
-	Wall[0]->SetScale(glm::vec3(50, 0.5, 50));
+	Wall[0]->SetScale(glm::vec3(200, 0.5, 200));
 	Wall[0]->SetTag("Bottom");
 
-	Wall[1]->SetPosition(glm::vec3(0, 50, 0));//Top 
-	Wall[1]->SetScale(glm::vec3(50, 0.5, 50));
+	Wall[1]->SetPosition(glm::vec3(0, 200, 0));//Top 
+	Wall[1]->SetScale(glm::vec3(200, 0.5, 200));
 	Wall[1]->SetTag("Top");
 
-	Wall[2]->SetPosition(glm::vec3(25, 25, 0));//Right
-	Wall[2]->SetScale(glm::vec3(0.5, 50, 50));
+	Wall[2]->SetPosition(glm::vec3(100, 100, 0));//Right
+	Wall[2]->SetScale(glm::vec3(0.5, 200, 200));
 	Wall[2]->SetTag("Right");
 
-	Wall[3]->SetPosition(glm::vec3(-25, 25, 0));//Left
-	Wall[3]->SetScale(glm::vec3(0.5, 50, 50));
+	Wall[3]->SetPosition(glm::vec3(-100, 100, 0));//Left
+	Wall[3]->SetScale(glm::vec3(0.5, 200, 200));
 	Wall[3]->SetTag("Left");
 
-	Wall[4]->SetPosition(glm::vec3(0, 25, 25));//Front
-	Wall[4]->SetScale(glm::vec3(50, 50, 0.5));
+	Wall[4]->SetPosition(glm::vec3(0, 100, 100));//Front
+	Wall[4]->SetScale(glm::vec3(200, 200, 0.5));
 	Wall[4]->SetTag("Front");
 
-	Wall[5]->SetPosition(glm::vec3(0, 25, -25));//Back
-	Wall[5]->SetScale(glm::vec3(50, 50, 0.5));
+	Wall[5]->SetPosition(glm::vec3(0, 100, -100));//Back
+	Wall[5]->SetScale(glm::vec3(200, 200, 0.5));
 	Wall[5]->SetTag("Back");
 	//=======================
 
@@ -69,7 +70,6 @@ void Game::Update(float DeltaTime)
 	for (int i = 0; i < enemy.size(); i++)
 	{
 		enemy[i]->Update(DeltaTime);
-
 		//Wall <-> Enemy onCollision
 		for (int j = 0; j < Wall.size(); j++)
 		{
