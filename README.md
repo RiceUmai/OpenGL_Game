@@ -15,7 +15,7 @@ std_image : [https://github.com/nothings/stb](https://github.com/nothings/stb)
 FreeType : [https://www.freetype.org/](https://www.freetype.org/)  
 
 ## 制作期間
-3が月（約40時間）
+3が月
 
 ## 開発人数 
 個人制作
@@ -24,9 +24,10 @@ FreeType : [https://www.freetype.org/](https://www.freetype.org/)
 learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
 
 # 制作意図
-学校にはUE4授業がないためUE4自分で勉強をチャレンジしました。  
-しかしC++知識が無かったのでgraphics libraryでC++勉強と考えました。  
-その中、Learn openglと言うsiteを見つけてSourc Codeを見なが真似した初めてのProgramになります。
+学校にはUE4授業がないため独学でチャレンジしました。  
+しかしC++知識が無かったのでgraphics librasyを参考にするこてでC++の勉強になると考えました。 
+その中、Learn openglと言うsiteを見つけてSourc Codeを見ながら真似をして作成した初めてのC++ Programに  
+なります。
 
 <div style="page-break-before:always"></div>
 
@@ -43,7 +44,7 @@ learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
 6. cubeに当たったらキューブは消える。（Enemyの数字が減少する）
 7. cubeが0になる及びTime(左上)が0になったらプログラム終了
 
-## Cubeオブジェクト実装した技能
+## Cubeオブジェクトで実装した機能
 1. Texture適用
 2. Cube移動と移動向きによって回転
 3. 当たり判定適用
@@ -51,7 +52,7 @@ learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
 
 <div style="page-break-before:always"></div>
 
-# Cubeオブジェクト(一部)
+# Cubeオブジェクトのソース(一部抜粋)
 ## Cube vertices(Front面だけ)
 ```cpp
 //cube.cpp
@@ -127,14 +128,14 @@ delete cube //オブジェクト解除
 # 当たり判定
 ## game.cpp
 ```cpp
-bool Game::CollisionAABB(Cube* Target, Cube* box)
+bsrool Game::CollisionAABB(Cube* Target, Cube* box)
 {
 	return (Target->GetMinPos().x <= box->GetMaxPos().x && Target->GetMaxPos().x >= box->GetMinPos().x) &&
 		(Target->GetMinPos().y <= box->GetMaxPos().y && Target->GetMaxPos().y >= box->GetMinPos().y) &&
 		(Target->GetMinPos().z <= box->GetMaxPos().z && Target->GetMaxPos().z >= box->GetMinPos().z);
 }
 ```
-# post processing
+# post processing(ScreenMoving)
 
 <center>
 <img src="./ScreenShot/GameScene.JPG" width="40%">
@@ -142,19 +143,25 @@ bool Game::CollisionAABB(Cube* Target, Cube* box)
 </center>
 <center> <strong>左）</strong>適用前、<strong>右）</strong>適用後</center> 
 
-## 説明
+## 適用説明
+1, Texture座標を少しずつ右上に画面が移動する。  
+2, 右上の最後の地点に経ったらその分Texture座標は左下に移動させる。  
+3, 1番と2番の繰り返し。
+
+## プログラムの操作説明
 1. マウス**左**クリックで次のShaderに変換
 2. マウス**右**クリックで前のShaderに変換
+
+<div style="page-break-before:always"></div>
+
 ## 適用の流れ
 1. FrameBuffer生成
 2. Sceneを描く場所を指定(**生成したFrameBuffer**)
 3. 指定したFrameBufferにGameSceneを描いて保存
 4. **生成**したFrameBufferを**default** FrameBufferに変更
 5. PostProcessingを適用したいなオブジェクト生成（四角形）
-6. 四角形にTexture(**別のFrameBuffer保存されているScene**)適用する
-7. そしてShaderを適用する
-<div style="page-break-before:always"></div>
-
+6. 四角形にTexture(**Post Processingを適用し、Objectの生成（四角形）**)を適用する
+7. Shaderを適用する
 
 ## ScreenRender.Cpp(FrameBuffers生成)
 
@@ -182,6 +189,8 @@ ScreenRender::ScreenRender()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 ```
+<div style="page-break-before:always"></div>
+
 ## quad.h.cpp(四角形生成)
 ```cpp
 float quadVertices[] = {
@@ -193,14 +202,11 @@ float quadVertices[] = {
 		 1.0f, -1.0f,  1.0f, 0.0f,
 		 1.0f,  1.0f,  1.0f, 1.0f
 };
-//=========================	
 //中略
-//=========================	
     //shaderを登録して
 	Shaders.push_back(Shader("Shader/framebuffers_screen.vs", "Shader/framebuffers_screen.fs"));
 	Shaders[Shaders_indice].setFloat("Time", glfwGetTime());
 	Shaders[Shaders_indice].use();
-}
 ```
 
 ## 使用例
@@ -210,10 +216,7 @@ float quadVertices[] = {
 #include "Game.h"
 #include "quad.h"
 
-//=========================	
 //中略
-//=========================	
-
 	game = new Game();
 	scrennRender = new ScreenRender();
 	_quad = new quad();
@@ -270,7 +273,7 @@ void main()
 ```
 <div style="page-break-before:always"></div>
 
-# その外(post processing)
+# その他のpost processing
 
 ## 画面分割
 <center><img src="./ScreenShot/postshader2.JPG" width="40%"></center>
