@@ -23,6 +23,9 @@ FreeType : [https://www.freetype.org/](https://www.freetype.org/)
 ## 参考サイト
 learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
 
+## github URL
+https://github.com/congibab/OpenGL_Game
+
 # 制作意図
 学校にはUE4授業がないため独学でチャレンジしました。  
 しかしC++知識が無かったのでgraphics librasyを参考にするこてでC++の勉強になると考えました。 
