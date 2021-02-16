@@ -35,9 +35,9 @@ learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
 <div style="page-break-before:always"></div>
 
 # プログラム画面
-<center>
+<p align="center">
    <img src="./ScreenShot/ProgramScene.JPG" width="70%">
-</center>
+</p>
 
 ## プログラム画面説明
 1. W,S,A,Sでカメラ移動
@@ -140,11 +140,11 @@ bsrool Game::CollisionAABB(Cube* Target, Cube* box)
 ```
 # post processing(ScreenMoving)
 
-<center>
+<p align="center">
 <img src="./ScreenShot/GameScene.JPG" width="40%">
 <img src="./ScreenShot/ScreenMovement.JPG" width="40%">
-</center>
-<center> <strong>左）</strong>適用前、<strong>右）</strong>適用後</center> 
+</p>
+<p align="center"> <strong>左）</strong>適用前、<strong>右）</strong>適用後</p> 
 
 ## 適用説明
 1, Texture座標を少しずつ右上に画面が移動する。  
@@ -279,10 +279,10 @@ void main()
 # その他のpost processing
 
 ## 画面分割
-<center><img src="./ScreenShot/postshader2.JPG" width="40%"></center>
+<p align="center"><img src="./ScreenShot/postshader2.JPG" width="40%"></p>
 
 ## モザイク
-<center><img src="./ScreenShot/postshader3.JPG" width="40%"></center>
+<p align="center"><img src="./ScreenShot/postshader3.JPG" width="40%"></p>
 
 ## グレースケール
-<center><img src="./ScreenShot/postshader4.JPG" width="40%"></center>
+<p align="center"><img src="./ScreenShot/postshader4.JPG" width="40%"></p>
