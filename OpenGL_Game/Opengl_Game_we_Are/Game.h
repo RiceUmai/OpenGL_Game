@@ -37,7 +37,7 @@ private:
 	Shader shader;
 
 	int Wall_Index = 6;
-	int enermy_Index = 20;
+	int enermy_Index = 40;
 
 	float Game_Time = MaxTime;
 

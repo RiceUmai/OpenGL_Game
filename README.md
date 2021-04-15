@@ -4,7 +4,7 @@
 -->
 
 ## 使用言語, ツール
-C++, GLSL, opengl  
+C++, GLSL, OpenGL
 Visual Studio 2019, VS Code
 
 ## 使用ライブラリ
@@ -15,10 +15,13 @@ std_image : [https://github.com/nothings/stb](https://github.com/nothings/stb)
 FreeType : [https://www.freetype.org/](https://www.freetype.org/)  
 
 ## 制作期間
-3が月
+2020年10月~2020年12月
 
 ## 開発人数 
 個人制作
+
+## 動画(YouTube)
+
 
 ## 参考サイト
 learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
@@ -60,7 +63,7 @@ learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
 ```cpp
 //cube.cpp
     float vertices[] = {
-        //local positions            //normals     //texture coords
+        //local positions     //normals    //texture coords
         -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
          0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
          0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
@@ -131,7 +134,7 @@ delete cube //オブジェクト解除
 # 当たり判定
 ## game.cpp
 ```cpp
-bsrool Game::CollisionAABB(Cube* Target, Cube* box)
+bool Game::CollisionAABB(Cube* Target, Cube* box)
 {
 	return (Target->GetMinPos().x <= box->GetMaxPos().x && Target->GetMaxPos().x >= box->GetMinPos().x) &&
 		(Target->GetMinPos().y <= box->GetMaxPos().y && Target->GetMaxPos().y >= box->GetMinPos().y) &&
