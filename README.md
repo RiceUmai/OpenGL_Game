@@ -3,9 +3,9 @@
 <div style="page-break-before:always"></div> 
 -->
 
-## 使用言語, ツール
-C++, GLSL, OpenGL
-Visual Studio 2019, VS Code
+## 使用言語, ツール 
+C++, GLSL, OpenGL  
+Visual Studio 2019, Visual Studio Code
 
 ## 使用ライブラリ
 GLFW3 : [https://www.glfw.org/](https://www.glfw.org/)  
@@ -17,14 +17,14 @@ FreeType : [https://www.freetype.org/](https://www.freetype.org/)
 ## 制作期間
 2020年10月~2020年12月
 
-## 開発人数 
+## 開発人数
 個人制作
 
 ## 動画(YouTube)
-
+[https://youtu.be/C13nFixrUdM](https://youtu.be/C13nFixrUdM)
 
 ## 参考サイト
-learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
+[https://learnopengl.com/](https://learnopengl.com/)
 
 ## github URL
 [https://github.com/congibab/OpenGL_Game](https://github.com/congibab/OpenGL_Game)
@@ -32,8 +32,8 @@ learnopengl : [https://learnopengl.com/](https://learnopengl.com/)
 # 制作意図
 学校にはUE4授業がないため独学でチャレンジしました。  
 しかしC++知識が無かったのでgraphics librasyを参考にするこてでC++の勉強になると考えました。 
-その中、Learn openglと言うsiteを見つけてSourc Codeを見ながら真似をして作成した初めてのC++ Programに  
-なります。
+その中、Learn openglと言うsiteを見つけてSourc Codeを見ながら真似をして作成した初めてのC++ Programになります。
+
 
 <div style="page-break-before:always"></div>
 
