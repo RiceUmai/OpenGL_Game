@@ -20,6 +20,9 @@ FreeType : [https://www.freetype.org/](https://www.freetype.org/)
 ## 開発人数
 個人制作
 
+## 製作者
+LEE GEONHWI(イゴンヒ)
+
 ## 動画(YouTube)
 [https://youtu.be/C13nFixrUdM](https://youtu.be/C13nFixrUdM)
 
