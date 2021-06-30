@@ -45,13 +45,7 @@
     <ClCompile Include="Game.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Line.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
@@ -75,9 +69,6 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Plane.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="ScreenRender.cpp">
       <Filter>PostPocssing</Filter>
     </ClCompile>
@@ -89,22 +80,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameTime.h">
-      <Filter>Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Setting.h">
-      <Filter>Header</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Line.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
@@ -128,14 +107,17 @@
     <ClInclude Include="Enemy.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Plane.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="ScreenRender.h">
       <Filter>PostPocssing</Filter>
     </ClInclude>
     <ClInclude Include="quad.h">
       <Filter>PostPocssing</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTime.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Setting.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

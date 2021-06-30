@@ -1,4 +1,4 @@
-#include "quad.h"
+﻿#include "quad.h"
 
 quad::quad()
 {
@@ -84,7 +84,7 @@ void quad::Init()
 }
 
 /// <summary>
-/// Shader subscription
+/// Shader登録
 /// </summary>
 void quad::ShadersInit()
 {
@@ -97,7 +97,7 @@ void quad::ShadersInit()
 }
 
 /// <summary>
-/// Shader Subscription
+/// Shaderを変更、コントロール
 /// </summary>
 void quad::ShaderControl()
 {

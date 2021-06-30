@@ -1,4 +1,4 @@
-#include "Game.h"
+﻿#include "Game.h"
 
 Game::Game() : shader("Shader/Cube.vs", "Shader/Cube.fs"),
 text("font/arial.ttf"),
@@ -11,10 +11,10 @@ fontShader("Shader/font.vs", "Shader/font.fs")
 	std::cout << "Init Game" << std::endl;
 
 	//=======================
-	//Wall Object Init
+	//Wall Object生成
 	for (int i = 0; i < Wall_Index; i++)
 	{
-		Wall.push_back(new Plane());
+		Wall.push_back(new Cube());
 		Wall.back()->SetImage("texture/container2.png");
 	}
 	////=======================
@@ -44,7 +44,7 @@ fontShader("Shader/font.vs", "Shader/font.fs")
 	//=======================
 
 	//=======================
-	//Enemy object Init
+	//Enemy object 生成
 	for (int i = 0; i < enermy_Index; i++)
 	{
 		enemy.push_back(new Enemy());
@@ -63,6 +63,10 @@ Game::~Game()
 	MemoryFree();
 }
 
+/// <summary>
+/// main Scene update
+/// </summary>
+/// <param name="DeltaTime"></param>
 void Game::Update(float DeltaTime)
 {
 	if (Result) return;
@@ -130,6 +134,11 @@ void Game::Update(float DeltaTime)
 	}
 }
 
+/// <summary>
+/// Main Scene deaw
+/// </summary>
+/// <param name="projection"></param>
+/// <param name="view"></param>
 void Game::Draw(glm::mat4 projection, glm::mat4 view)
 {
 	if (Result)
@@ -159,6 +168,9 @@ void Game::Draw(glm::mat4 projection, glm::mat4 view)
 	//===============================================
 }
 
+/// <summary>
+/// Scene Reset
+/// </summary>
 void Game::Reset()
 {
 	MemoryFree();
@@ -195,6 +207,7 @@ void Game::MemoryFree()
 }
 
 //collision chacke
+//当たり判定をチェックする
 //====================
 //====================
 bool Game::CollisionAABB(Cube* Target, Cube* box)

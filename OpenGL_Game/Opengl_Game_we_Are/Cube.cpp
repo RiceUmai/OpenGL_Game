@@ -1,4 +1,4 @@
-#include "Cube.h"
+﻿#include "Cube.h"
 
 Cube::Cube()
 {
@@ -70,6 +70,10 @@ void Cube::Draw(Shader shader, glm::mat4 projection, glm::mat4 view)
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+/// <summary>
+/// チューブのTextureを定義
+/// </summary>
+/// <param name="path"></param>
 void Cube::SetImage(char const* path)
 {
     image = new Image((path));
@@ -79,7 +83,7 @@ void Cube::SetImage(char const* path)
 
 
 
-//private function
+//チューブを定義
 //========================================
 //========================================
 void Cube::Init()
@@ -161,6 +165,9 @@ void Cube::Init()
     glEnableVertexAttribArray(2);
 }
 
+/// <summary>
+///  当たり判定更新
+/// </summary>
 void Cube::Collision_Update()
 {
     maxPos.x = Position.x + 0.5 * Scale.x;

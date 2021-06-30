@@ -150,12 +150,9 @@
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Image.cpp" />
-    <ClCompile Include="Line.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Plane.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="quad.cpp" />
     <ClCompile Include="ScreenRender.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -169,11 +166,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="Line.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
-    <ClInclude Include="Plane.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="quad.h" />
     <ClInclude Include="ScreenRender.h" />
     <ClInclude Include="Setting.h" />

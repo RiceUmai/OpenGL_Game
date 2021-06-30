@@ -16,9 +16,8 @@
 #include "Image.h"
 #include "Text.h"
 
-#include "Line.h"
 #include "Enemy.h"
-#include "Plane.h"
+#include "Cube.h"
 
 #include "Setting.h"
 
@@ -29,7 +28,7 @@ class Game
 private:
 	glm::mat4 font_projection;
 	std::string SceneName = "Game";
-	std::vector<Plane*> Wall;
+	std::vector<Cube*> Wall;
 	std::vector<Enemy*> enemy;
 	glm::vec3 cameraPos;
 	Text text;

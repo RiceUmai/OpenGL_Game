@@ -153,6 +153,15 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
+
+/// <summary>
+/// キーボード入力
+/// </summary>
+/// <param name="window"></param>
+/// <param name="key"></param>
+/// <param name="scencode"></param>
+/// <param name="action"></param>
+/// <param name="mods"></param>
 void key_callback(GLFWwindow* window, int key, int scencode, int action, int mods)
 {
 	float CameraSpeed = 10.0f;
@@ -187,6 +196,12 @@ void key_callback(GLFWwindow* window, int key, int scencode, int action, int mod
 	}
 }
 
+/// <summary>
+/// マウスドラッグ入力関連
+/// </summary>
+/// <param name="window"></param>
+/// <param name="xpos"></param>
+/// <param name="ypos"></param>
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	if (firstMouse)
@@ -210,6 +225,13 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 	//camera.ProcessMouseScroll(yoffset);
 }
 
+/// <summary>
+/// マウスボタン入力関連
+/// </summary>
+/// <param name="window"></param>
+/// <param name="button"></param>
+/// <param name="action"></param>
+/// <param name="mods"></param>
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
 	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
