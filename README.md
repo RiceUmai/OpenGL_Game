@@ -1,3 +1,6 @@
+# 한국어 포스팅 링크
+[https://first-hugo-blog.netlify.app/ko/posts/opengl_game/opengl_game/](https://first-hugo-blog.netlify.app/ko/posts/opengl_game/opengl_game/)
+
 # OpenGLプロジェット概要
 <!-- 
 <div style="page-break-before:always"></div> 
